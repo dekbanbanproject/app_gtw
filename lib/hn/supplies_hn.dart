@@ -10,8 +10,18 @@ class SuppliesHn extends StatefulWidget {
 class _SuppliesHnState extends State<SuppliesHn> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+     return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [Text('Data Supplies')
+            // charts.BarChart(
+            //   chartData(Dbgleave),
+            //   animate: true,
+            // vertical: false,
+            // )
+          ],
+        ),
+      ),
     );
   }
 }

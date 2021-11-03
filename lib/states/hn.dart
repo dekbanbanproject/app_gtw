@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gtw/hn/gleave_hn.dart';
 
 import 'package:gtw/user/advertise.dart';
 import 'package:gtw/utility/my_constant.dart';
 import 'package:gtw/widgets/show_signout.dart';
 import 'package:gtw/widgets/show_title.dart';
+import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 
 class HnPage extends StatefulWidget {
   const HnPage({Key? key}) : super(key: key);
@@ -24,53 +26,112 @@ class _HnPageState extends State<HnPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          // leading: Row(
-          //   children: [
-          //     Padding(
-          //       padding: const EdgeInsets.only(left: 3),
-          //       child: Text(
-          //         'หัวหน้า',
-          //         style: MyConstant().h1whit17(),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              MyConstant().version
-              // Text('หัวหน้า'),
-              // Text('Ver.641015',style: MyConstant().h1whit17(),),
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        // leading: Row(
+        //   children: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(left: 3),
+        //       child: Text(
+        //         'หัวหน้า',
+        //         style: MyConstant().h1whit17(),
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            MyConstant().version
+            // Text('หัวหน้า'),
+            // Text('Ver.641015',style: MyConstant().h1whit17(),),
+          ],
         ),
-        drawer: Drawer(
-          child: Stack(
-            children: [
-              ShowSignOut(),
-              Column(
-                children: [
-                  UserAccountsDrawerHeader(
-                      accountName: null, accountEmail: null),
-                  buildAdvertisePagemenu(),
-                  buildLeavemenu(),
-                  buildperDevmenu(),
-                  buildAccountmenu(),
-                  buildgestHousemenu(),
-                  buildBookmenu(),
-                  // buildMeetingroommenu(),
-                  // buildCarmenu(),
-                  // buildAssetmenu(),
-                  // buildSuppliesmenu(),
-                  // buildWhereHousemenu(),
-                ],
-              ),
-            ],
-          ),
+      ),
+      drawer: Drawer(
+        child: Stack(
+          children: [
+            ShowSignOut(),
+            Column(
+              children: [
+                UserAccountsDrawerHeader(accountName: null, accountEmail: null),
+                buildAdvertisePagemenu(),
+                buildLeavemenu(),
+                buildperDevmenu(),
+                buildAccountmenu(),
+                buildgestHousemenu(),
+                buildBookmenu(),
+                // buildMeetingroommenu(),
+                // buildCarmenu(),
+                // buildAssetmenu(),
+                // buildSuppliesmenu(),
+                // buildWhereHousemenu(),
+              ],
+            ),
+          ],
         ),
-        body: currentWidget);
+      ),
+      body: currentWidget,
+       floatingActionButton: AnimatedFloatingActionButton(
+        colorEndAnimation: Colors.orange.shade300,
+        colorStartAnimation: Colors.blue,
+        animatedIconData: AnimatedIcons.menu_home,
+        fabButtons: [
+          builddashboardHN(),
+          builddevbookHn(),
+        ],
+      ),
+    );
+  }
+
+  builddashboardHN() {
+    return Container(
+      child: FloatingActionButton(
+        onPressed: () {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => GleaveHn(
+          
+          //   )),
+          // );
+          Navigator.pushNamedAndRemoveUntil(
+              context, MyConstant.routeHnPage, (route) => false);
+        },
+        focusColor: Colors.orange,
+        focusElevation: 16.0,
+        heroTag: 'add',
+        // child: Text('Dashboard'),
+        child: Icon(
+          Icons.dashboard,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  builddevbookHn() {
+    return Container(
+      child: FloatingActionButton(
+        onPressed: () {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => GleaveHn(
+          
+          //   )),
+          // );
+          Navigator.pushNamedAndRemoveUntil(
+              context, MyConstant.routeHnPage, (route) => false);
+        },
+        focusColor: Colors.orange,
+        focusElevation: 16.0,
+        heroTag: 'add',
+        // child: Text('Dashboard'),
+        child: Icon(
+          Icons.dashboard,
+          color: Colors.white,
+        ),
+      ),
+    );
   }
 
   ListTile buildAdvertisePagemenu() {

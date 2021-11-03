@@ -10,8 +10,18 @@ class WhereHouseHn extends StatefulWidget {
 class _WhereHouseHnState extends State<WhereHouseHn> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+     return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [Text('Data Warehouse')
+            // charts.BarChart(
+            //   chartData(Dbgleave),
+            //   animate: true,
+            // vertical: false,
+            // )
+          ],
+        ),
+      ),
     );
   }
 }

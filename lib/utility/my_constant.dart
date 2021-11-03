@@ -7,7 +7,7 @@ class MyConstant {
   static String appName = 'GTW-BACKOffice';
   // static String domain = 'http://27.254.191.157/';
   static String domain =
-      'https://95f5-2403-6200-8830-116-457a-fba6-9a53-e015.ngrok.io';
+      'https://f913-1-46-129-56.ngrok.io';
   static String routeHome = '/home';
   static String routeAuthen = '/authen';
   static String routeUserPage = '/user';
@@ -40,12 +40,12 @@ class MyConstant {
   }
 
   static List<String> menus = [
-    'Dashboard',
-    'หนังสือราชการ',
-    'เห็นชอบการลา',
-    'เห็นชอบประชุม/อบรม/ดูงาน',
-    'เห็นชอบจัดซื้อจัดจ้าง',
-    'เห็นชอบคลังวัสดุ',
+    ' Dashboard  ',
+    ' หนังสือราชการ  ',
+    '    การลา    ',
+    ' ประชุม/อบรม/ดูงาน  ',
+    '  จัดซื้อจัดจ้าง  ',
+    '  คลังวัสดุ  ',
   ];
 
   static List<Color> colors = [
