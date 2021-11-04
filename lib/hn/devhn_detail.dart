@@ -2,43 +2,42 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:gtw/models/gleave_model.dart';
+import 'package:gtw/models/devhn_model.dart';
 import 'package:gtw/utility/my_constant.dart';
 import 'package:gtw/utility/my_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class GleaveDetail extends StatefulWidget {
-  final GleaveModel gleaveModel;
-  const GleaveDetail({Key? key, required this.gleaveModel}) : super(key: key);
+class DevHN_Detail extends StatefulWidget {
+  final DevhnModel devhnmodel;
+  const DevHN_Detail({Key? key, required this.devhnmodel}) : super(key: key);
 
   @override
-  _GleaveDetailState createState() => _GleaveDetailState();
+  _DevHN_DetailState createState() => _DevHN_DetailState();
 }
 
-class _GleaveDetailState extends State<GleaveDetail> {
-  GleaveModel? gleaveModel; //ตัวแปรคนละตัวกับข้างบน
+class _DevHN_DetailState extends State<DevHN_Detail> {
+  DevhnModel? devhnmodels;
   String? id, yearid, status, statusC, typename, idperson, iddebss, sendworkid;
   String? personid, positionid, depsubsubid, fullname;
 
   @override
   void initState() {
     super.initState();
-    gleaveModel = widget
-        .gleaveModel; ///// *******  อันเดียวกันกับข้างบนสุด  ********************////
-    id = gleaveModel!.ID;
+    devhnmodels = widget.devhnmodel;
+    id = devhnmodels!.ID;
     print(id);
-    yearid = gleaveModel!.LEAVE_YEAR_ID;
+    // yearid = devhnmodels!.LEAVE_YEAR_ID;
     print(yearid);
-    status = 'Approve';
-    statusC = 'Disapprove';
-    typename = gleaveModel!.LEAVE_TYPE_NAME;
-    sendworkid = gleaveModel!.LEAVE_WORK_SEND_ID;
+    status = 'RECEIVE'; // รับเรื่อง
+    statusC = 'EDIT'; // แก้ไข
+    // typename = devhnmodels!.LEAVE_TYPE_NAME;
+    sendworkid = devhnmodels!.OFFER_WORK_HR_NAME;
     print(status);
 
-    readdatagleave();
+    readdatadevhn();
   }
 
-  Future<Null> readdatagleave() async {
+  Future<Null> readdatadevhn() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       fullname = preferences.getString('fullname');
@@ -50,16 +49,19 @@ class _GleaveDetailState extends State<GleaveDetail> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/gtw/api/devhn.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
       } else {
         for (var item in json.decode(value.data)) {
-          GleaveModel model = GleaveModel.fromMap(item);
-          print('### ==>>>${model.LEAVE_PERSON_FULLNAME}');
+          DevhnModel model = DevhnModel.fromMap(item);
+          print('### ==>>>${model.BOOK_NUM}');
 
-        
+          setState(() {
+            // devhnmodels.add(model);
+            // searchdevhnmodels = devhnmodels;
+          });
         }
       }
     });
@@ -69,7 +71,12 @@ class _GleaveDetailState extends State<GleaveDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(gleaveModel!.LEAVE_PERSON_FULLNAME),
+        title: Row(
+          children: [
+            Text('หัวข้อ  '),
+            Text(devhnmodels!.RECORD_HEAD_USE),
+          ],
+        ),
       ),
       body: Container(
         margin: EdgeInsets.only(top: 15),
@@ -79,32 +86,31 @@ class _GleaveDetailState extends State<GleaveDetail> {
                 const EdgeInsets.only(left: 10, right: 10, top: 1, bottom: 2),
             child: Column(
               children: [
+                // Card(
+                //   child: ListTile(
+                //     leading: Text(
+                //       'หัวข้อประชุม  ',
+                //       style: MyConstant().h3back(),
+                //     ),
+                //     title: Padding(
+                //       padding: const EdgeInsets.only(left: 5),
+                //       child: Text(
+                //         devhnmodels!.RECORD_HEAD_USE,
+                //         style: MyConstant().h3dark(),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Card(
                   child: ListTile(
                     leading: Text(
-                      'ปีงบประมาณ  ',
+                      'ระหว่างวันที่  ',
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
                       padding: const EdgeInsets.only(left: 2),
                       child: Text(
-                        gleaveModel!.LEAVE_YEAR_ID,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                    
-                  ),                
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ชื่อผู้ลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                       padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_PERSON_FULLNAME,
+                        devhnmodels!.DATE_GO,
                         style: MyConstant().h3dark(),
                       ),
                     ),
@@ -113,13 +119,13 @@ class _GleaveDetailState extends State<GleaveDetail> {
                 Card(
                   child: ListTile(
                     leading: Text(
-                      'เหตุผลการลา  ',
+                      'ถึงวันที่  ',
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                        padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
-                        gleaveModel!.LEAVE_BECAUSE,
+                        devhnmodels!.DATE_GO,
                         style: MyConstant().h3dark(),
                       ),
                     ),
@@ -128,13 +134,88 @@ class _GleaveDetailState extends State<GleaveDetail> {
                 Card(
                   child: ListTile(
                     leading: Text(
-                      'สถานที่ไป  ',
+                      'สถานที่จัดประชุม  ',
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                        padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
-                        gleaveModel!.LOCATION_NAME,
+                        devhnmodels!.LOCATION_ORG_NAME,
+                        style: MyConstant().h3dark(),
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Text(
+                      'ประเภทการไป  ',
+                      style: MyConstant().h3back(),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.only(left: 0),
+                      child: Text(
+                        devhnmodels!.RECORD_TYPE_NAME,
+                        style: MyConstant().h3dark(),
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Text(
+                      'ระดับ  ',
+                      style: MyConstant().h3back(),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.only(left: 2),
+                      child: Text(
+                        devhnmodels!.RECORD_LEVEL_NAME,
+                        style: MyConstant().h3dark(),
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Text(
+                      'ลักษณะ  ',
+                      style: MyConstant().h3back(),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.only(left: 2),
+                      child: Text(
+                        devhnmodels!.RECORD_GO_NAME,
+                        style: MyConstant().h3dark(),
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Text(
+                      'การเบิกเงิน  ',
+                      style: MyConstant().h3back(),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.only(left: 2),
+                      child: Text(
+                        devhnmodels!.WITHDRAW_NAME,
+                        style: MyConstant().h3dark(),
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: ListTile(
+                    leading: Text(
+                      'พาหนะเดินทาง  ',
+                      style: MyConstant().h3back(),
+                    ),
+                    title: Padding(
+                      padding: const EdgeInsets.only(left: 2),
+                      child: Text(
+                        devhnmodels!.RECORD_VEHICLE_NAME,
                         style: MyConstant().h3dark(),
                       ),
                     ),
@@ -147,54 +228,9 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                       padding: const EdgeInsets.only(left: 0),
-                      child: Text(
-                        gleaveModel!.LEAVE_WORK_SEND,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'วันที่เริ่มลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                        padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_DATE_BEGIN,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สิ้นสุดวันลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
                       padding: const EdgeInsets.only(left: 2),
                       child: Text(
-                        gleaveModel!.LEAVE_DATE_END,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สิ้นสุดวันลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                       padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_TYPE_NAME,
+                        devhnmodels!.OFFER_WORK_HR_NAME,
                         style: MyConstant().h3dark(),
                       ),
                     ),
@@ -211,12 +247,12 @@ class _GleaveDetailState extends State<GleaveDetail> {
                           style: ElevatedButton.styleFrom(
                               elevation: 2, primary: Colors.green),
                           onPressed: () {
-                            EditGleave();
+                            EditDevhn();
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'เห็นชอบ',
+                              'รับเรื่อง',
                               style: MyConstant().h2White(),
                             ),
                           ),
@@ -228,12 +264,12 @@ class _GleaveDetailState extends State<GleaveDetail> {
                           primary: Colors.redAccent,
                         ),
                         onPressed: () {
-                          CancelGleave();
+                          CancelDevhn();
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'ไม่เห็นชอบ',
+                            'ส่งกลับไปแก้ไข',
                             style: MyConstant().h2White(),
                           ),
                         ),
@@ -249,7 +285,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
     );
   }
 
-  Future<Null> EditGleave() async {
+  Future<Null> EditDevhn() async {
     showDialog(
       context: (context),
       builder: (context) => AlertDialog(
@@ -260,7 +296,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
               children: [
                 // SizedBox(child: ShowImage(path: MyConstant.img2)),
                 Text(
-                  'ต้องการเห็นชอบใช่หรือไม่ ?',
+                  'ต้องการรับเรื่องใช่หรือไม่ ?',
                   style: TextStyle(
                     fontSize: 17,
                     fontFamily: 'Kanit-Regular',
@@ -308,43 +344,11 @@ class _GleaveDetailState extends State<GleaveDetail> {
             ),
           ],
         ),
-        // content: Text('Succes'),
-        // actions: [
-        //   // ignore: deprecated_member_use
-        //   RaisedButton(
-        //     color: Colors.lightBlue,
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //       UpdateStatus();
-        //     },
-        //     child: Text(
-        //       "   ใช่   ",
-        //       style: TextStyle(
-        //           fontSize: 17,
-        //           fontFamily: 'Kanit-Regular',
-        //           color: Colors.white),
-        //     ),
-        //   ),
-        //   // ignore: deprecated_member_use
-        //   RaisedButton(
-        //     color: Colors.red,
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     child: Text(
-        //       " ยกเลิก ",
-        //       style: TextStyle(
-        //           fontSize: 17,
-        //           fontFamily: 'Kanit-Regular',
-        //           color: Colors.white),
-        //     ),
-        //   ),
-        // ],
       ),
     );
   }
 
-  Future<Null> CancelGleave() async {
+  Future<Null> CancelDevhn() async {
     showDialog(
       context: (context),
       builder: (context) => AlertDialog(
@@ -357,7 +361,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                 children: [
                   // SizedBox(child: ShowImage(path: MyConstant.img2)),
                   Text(
-                    'ไม่เห็นชอบใช่หรือไม่ ?',
+                    'ส่งกลับไปแก้ไขใช่หรือไม่ ?',
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: 'Kanit-Regular',
@@ -366,55 +370,52 @@ class _GleaveDetailState extends State<GleaveDetail> {
                   ),
                 ],
               ),
-              
             ),
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // SizedBox(child: ShowImage(path: MyConstant.img2)),
-                  RaisedButton(
-                    color: Colors.lightBlue,
-                    onPressed: () {
-                      Navigator.pop(context);
-                      CancelStatus();
-                    },
-                    child: Text(
-                      "   ใช่   ",
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Kanit-Regular',
-                          color: Colors.white),
-                    ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // SizedBox(child: ShowImage(path: MyConstant.img2)),
+                RaisedButton(
+                  color: Colors.lightBlue,
+                  onPressed: () {
+                    Navigator.pop(context);
+                    CancelStatus();
+                  },
+                  child: Text(
+                    "   ใช่   ",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: 'Kanit-Regular',
+                        color: Colors.white),
                   ),
-                  // ignore: deprecated_member_use
-                  RaisedButton(
-                    color: Colors.red,
-                    onPressed: () {
-                      Navigator.pop(context);
-
-                    },
-                    child: Text(
-                      " ยกเลิก ",
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Kanit-Regular',
-                          color: Colors.white),
-                    ),
+                ),
+                // ignore: deprecated_member_use
+                RaisedButton(
+                  color: Colors.red,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    " ยกเลิก ",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: 'Kanit-Regular',
+                        color: Colors.white),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
           ],
         ),
-       
       ),
     );
   }
 
   Future<Null> UpdateStatus() async {
-    String id = gleaveModel!.ID;
+    String id = devhnmodels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/gleave_updatehn.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$status&HR_DEPARTMENT_SUB_SUB_ID=$iddebss&LEAVE_WORK_SEND_ID=$sendworkid';
+        '${MyConstant.domain}/gtw/api/devhn_update.php?isAdd=true&ID=$id&STATUS=$status&OFFER_WORK_HR_NAME=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -428,14 +429,16 @@ class _GleaveDetailState extends State<GleaveDetail> {
   }
 
   Future<Null> CancelStatus() async {
-    String id = gleaveModel!.ID;
+    String id = devhnmodels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/gleave_cancelhn.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$statusC';
+        '${MyConstant.domain}/gtw/api/devhn_cancel.php?isAdd=true&ID=$id&STATUS=$statusC&OFFER_WORK_HR_NAME=$sendworkid';
+
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
         print(value);
         Navigator.pop(context);
+        // readdatagleave();
       } else {
         Navigator.pop(context);
       }

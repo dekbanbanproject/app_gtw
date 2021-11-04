@@ -7,7 +7,7 @@ class MyConstant {
   static String appName = 'GTW-BACKOffice';
   // static String domain = 'http://27.254.191.157/';
   static String domain =
-      'https://f913-1-46-129-56.ngrok.io';
+      'https://07cc-1-46-157-52.ngrok.io';
   static String routeHome = '/home';
   static String routeAuthen = '/authen';
   static String routeUserPage = '/user';
@@ -18,7 +18,7 @@ class MyConstant {
   static String routeGleavePage = '/gleave';
   static String routeTdbPage = '/tdb';
 
-  var version = Text('V.641102');
+  var version = Text('V.641105');
 
 
   _setHeaders() => {
