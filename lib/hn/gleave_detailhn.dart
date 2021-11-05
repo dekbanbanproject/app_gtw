@@ -50,7 +50,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
@@ -58,8 +58,6 @@ class _GleaveDetailState extends State<GleaveDetail> {
         for (var item in json.decode(value.data)) {
           GleaveModel model = GleaveModel.fromMap(item);
           print('### ==>>>${model.LEAVE_PERSON_FULLNAME}');
-
-        
         }
       }
     });
@@ -92,8 +90,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                         style: MyConstant().h3dark(),
                       ),
                     ),
-                    
-                  ),                
+                  ),
                 ),
                 Card(
                   child: ListTile(
@@ -102,7 +99,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                       padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
                         gleaveModel!.LEAVE_PERSON_FULLNAME,
                         style: MyConstant().h3dark(),
@@ -117,7 +114,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                        padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
                         gleaveModel!.LEAVE_BECAUSE,
                         style: MyConstant().h3dark(),
@@ -132,7 +129,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                        padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
                         gleaveModel!.LOCATION_NAME,
                         style: MyConstant().h3dark(),
@@ -147,7 +144,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                       padding: const EdgeInsets.only(left: 0),
+                      padding: const EdgeInsets.only(left: 0),
                       child: Text(
                         gleaveModel!.LEAVE_WORK_SEND,
                         style: MyConstant().h3dark(),
@@ -162,7 +159,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                        padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
                         gleaveModel!.LEAVE_DATE_BEGIN,
                         style: MyConstant().h3dark(),
@@ -192,7 +189,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       style: MyConstant().h3back(),
                     ),
                     title: Padding(
-                       padding: const EdgeInsets.only(left: 2),
+                      padding: const EdgeInsets.only(left: 2),
                       child: Text(
                         gleaveModel!.LEAVE_TYPE_NAME,
                         style: MyConstant().h3dark(),
@@ -366,46 +363,43 @@ class _GleaveDetailState extends State<GleaveDetail> {
                   ),
                 ],
               ),
-              
             ),
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // SizedBox(child: ShowImage(path: MyConstant.img2)),
-                  RaisedButton(
-                    color: Colors.lightBlue,
-                    onPressed: () {
-                      Navigator.pop(context);
-                      CancelStatus();
-                    },
-                    child: Text(
-                      "   ใช่   ",
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Kanit-Regular',
-                          color: Colors.white),
-                    ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // SizedBox(child: ShowImage(path: MyConstant.img2)),
+                RaisedButton(
+                  color: Colors.lightBlue,
+                  onPressed: () {
+                    Navigator.pop(context);
+                    CancelStatus();
+                  },
+                  child: Text(
+                    "   ใช่   ",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: 'Kanit-Regular',
+                        color: Colors.white),
                   ),
-                  // ignore: deprecated_member_use
-                  RaisedButton(
-                    color: Colors.red,
-                    onPressed: () {
-                      Navigator.pop(context);
-
-                    },
-                    child: Text(
-                      " ยกเลิก ",
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Kanit-Regular',
-                          color: Colors.white),
-                    ),
+                ),
+                // ignore: deprecated_member_use
+                RaisedButton(
+                  color: Colors.red,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    " ยกเลิก ",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: 'Kanit-Regular',
+                        color: Colors.white),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
           ],
         ),
-       
       ),
     );
   }
@@ -414,7 +408,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
     String id = gleaveModel!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/gleave_updatehn.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$status&HR_DEPARTMENT_SUB_SUB_ID=$iddebss&LEAVE_WORK_SEND_ID=$sendworkid';
+        '${MyConstant.domain}/gtw/api/hn_gleave_update.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$status&HR_DEPARTMENT_SUB_SUB_ID=$iddebss&LEAVE_WORK_SEND_ID=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -431,7 +425,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
     String id = gleaveModel!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/gleave_cancelhn.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$statusC';
+        '${MyConstant.domain}/gtw/api/hn_gleave_cancel.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$statusC';
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
         print(value);

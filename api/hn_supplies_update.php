@@ -16,20 +16,15 @@
     }
     if(isset($_GET)){
         if ($_GET['isAdd'] == 'true') {
-           
-            $id = $_GET['ID'];
-            // $yearid = $_GET['LEAVE_YEAR_ID'];
-            $statusC = $_GET['STATUS']; 
-            // $depss = $_GET['HR_DEPARTMENT_SUB_SUB_ID'];
-            $sendworkid = $_GET['OFFER_WORK_HR_NAME'];
+				
+        $id = $_GET['ID'];
+        $status = $_GET['STATUS'];
+        
+		$sql = "UPDATE `supplies_request` SET `STATUS` = '$status' WHERE ID = '$id'";
 
-            $sql = "UPDATE `grecord_index` SET `STATUS` = '$statusC' WHERE ID = '$id'";
+        $result = mysqli_query($conn, $sql) or die ("Error : $sql" .mysqli_error());
 
-           
-
-            $result = mysqli_query($conn, $sql) or die ("Error : $sql" .mysqli_error());
-
-            /////////////////////////////////////  ส่งไลน์แจ้งเตือน ////////////////////////////////////////////////////
+ /////////////////////////////////////  ส่งไลน์แจ้งเตือน ////////////////////////////////////////////////////
 
             // $data = "SELECT `LEAVE_DATE_BEGIN`, `LEAVE_DATE_END`,`LEAVE_BECAUSE` , `LEAVE_PERSON_FULLNAME`,`WORK_DO`, `LEAVE_WORK_SEND`, `LEAVE_TYPE_CODE` FROM gleave_register WHERE ID = '$id'";	
             // $res = mysqli_query($conn, $data) or die ("Error : $data" .mysqli_error());	 
@@ -188,25 +183,6 @@
             // else { $result_ = json_decode($result, true);
             // echo "status : ".$result_['status']; echo "message : ". $result_['message']; }
             // curl_close( $chOne3 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -27,7 +27,7 @@ class _GleavePageState extends State<GleavePage> {
   }
 
   Future<Null> readdatagleave() async {
-    String apireaData = '${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true';
+    String apireaData = '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true';
     await Dio().get(apireaData).then((value) {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');

@@ -23,7 +23,7 @@ class _DevHNState extends State<DevHN> {
   bool loadStatus = true;
   String? personid, positionid, depsubsubid, fullname;
 
- @override
+  @override
   void initState() {
     super.initState();
     readdatadevhn();
@@ -44,7 +44,7 @@ class _DevHNState extends State<DevHN> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/devhn.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/gtw/api/hn_dev.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
@@ -64,7 +64,7 @@ class _DevHNState extends State<DevHN> {
 
   @override
   Widget build(BuildContext context) {
-      return Expanded(
+    return Expanded(
       child: devhnmodels.length == 0
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
@@ -112,7 +112,7 @@ class _DevHNState extends State<DevHN> {
     );
   }
 
-ListView buildListView() {
+  ListView buildListView() {
     return ListView.builder(
       padding: EdgeInsets.symmetric(horizontal: 6),
       shrinkWrap: true,
@@ -137,15 +137,12 @@ ListView buildListView() {
               ),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                 
-                ],
+                children: [],
               ),
-               trailing:  Text(
-                    searchdevhnmodels[index].DATE_GO,
-                    style: MyConstant().h4dark(),
-                  ),
-             
+              trailing: Text(
+                searchdevhnmodels[index].DATE_GO,
+                style: MyConstant().h4dark(),
+              ),
             ),
           ),
         ),
@@ -153,6 +150,7 @@ ListView buildListView() {
     );
   }
 }
+
 class Debouncer {
   final int millisecond;
   Timer? timer;

@@ -31,12 +31,12 @@ class _TestDashboardState extends State<TestDashboard> {
 
   Future<List<Dbogleave>> getDatagleave() async {
     List<Dbogleave> list = [];
-    final response = await http
-        .get(Uri.parse('${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true'));
+    final response = await http.get(
+        Uri.parse('${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true'));
     if (response.statusCode == 200) {
       list = fromJson(response.body);
       // setState(() {
-        // Dbgleave.add();
+      // Dbgleave.add();
       // });
     }
     return list;
@@ -52,8 +52,6 @@ class _TestDashboardState extends State<TestDashboard> {
           data: data)
     ];
   }
-
-  
 
   @override
   Widget build(BuildContext context) {

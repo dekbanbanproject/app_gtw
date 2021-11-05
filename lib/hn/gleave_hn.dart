@@ -45,7 +45,7 @@ class _GleaveHnState extends State<GleaveHn> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
@@ -140,8 +140,8 @@ class _GleaveHnState extends State<GleaveHn> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   // Text(
-                    // searchgleavemodels[index].LEAVE_DATE_BEGIN,
-                    // style: MyConstant().h4dark(),
+                  // searchgleavemodels[index].LEAVE_DATE_BEGIN,
+                  // style: MyConstant().h4dark(),
                   // ),
                   //  Text(
                   //   ' -',
@@ -149,10 +149,10 @@ class _GleaveHnState extends State<GleaveHn> {
                   // ),
                 ],
               ),
-               trailing:  Text(
-                    searchgleavemodels[index].LEAVE_DATE_END,
-                    style: MyConstant().h4dark(),
-                  ),
+              trailing: Text(
+                searchgleavemodels[index].LEAVE_DATE_END,
+                style: MyConstant().h4dark(),
+              ),
               // trailing: IconButton(
               //   onPressed: () {},
               //   icon: Icon(

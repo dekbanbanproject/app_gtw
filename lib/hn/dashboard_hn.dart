@@ -37,7 +37,7 @@ class _DashboardHNState extends State<DashboardHN> {
   }
 
   // Future<Null> getData() async {
-  //   String apireaData = '${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true';
+  //   String apireaData = '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true';
   //   await Dio().get(apireaData).then((value) {
   //     for (var item in json.decode(value.data)) {
   //       GleaveModel model = GleaveModel.fromMap(item);
@@ -61,8 +61,8 @@ class _DashboardHNState extends State<DashboardHN> {
 
   Future<List<Dbogleave>> getDatagleave() async {
     List<Dbogleave> list = [];
-    var response = await http
-        .get(Uri.parse('${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true'));
+    var response = await http.get(
+        Uri.parse('${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true'));
     if (response.statusCode == 200) {
       list = fromJson(response.body);
       setState(() {
@@ -125,10 +125,8 @@ class _DashboardHNState extends State<DashboardHN> {
         child: Column(
           children: [
             Text('data'),
-            
           ],
         ),
-        
       ),
       // body: Center(),
       // floatingActionButton: AnimatedFloatingActionButton(

@@ -6,10 +6,7 @@ import 'package:gtw/models/gleave_model.dart';
 import 'package:gtw/utility/my_constant.dart';
 import 'package:gtw/utility/my_dialog.dart';
 
-
-
 class GleavePage extends StatefulWidget {
-
   const GleavePage({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +14,6 @@ class GleavePage extends StatefulWidget {
 }
 
 class _GleavePageState extends State<GleavePage> {
-
   bool loadStatus = true; // load data jason
   bool status = true; // ถ้ามีข้อมูล
   List<GleaveModel> gleavemodels = [];
@@ -31,7 +27,7 @@ class _GleavePageState extends State<GleavePage> {
   }
 
   Future<Null> readdatagleave() async {
-    String apireaData = '${MyConstant.domain}/gtw/api/gleavehn.php?isAdd=true';
+    String apireaData = '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true';
     await Dio().get(apireaData).then((value) {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
@@ -109,7 +105,7 @@ class _GleavePageState extends State<GleavePage> {
                   fontFamily: 'Kanit-Regular',
                   color: Colors.black),
             ), //leading Column 1
-             title: Row(
+            title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -141,8 +137,8 @@ class _GleavePageState extends State<GleavePage> {
                 //   ),
                 // ),
               ],
-            ), 
-             //title Column 2
+            ),
+            //title Column 2
             // ignore: deprecated_member_use
             trailing: RaisedButton(
               //trailing Column 3

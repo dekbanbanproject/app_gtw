@@ -49,7 +49,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/devhn.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/gtw/api/hn_dev.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
@@ -415,7 +415,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
     String id = devhnmodels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/devhn_update.php?isAdd=true&ID=$id&STATUS=$status&OFFER_WORK_HR_NAME=$sendworkid';
+        '${MyConstant.domain}/gtw/api/hn_devupdate.php?isAdd=true&ID=$id&STATUS=$status&OFFER_WORK_HR_NAME=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -432,7 +432,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
     String id = devhnmodels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/devhn_cancel.php?isAdd=true&ID=$id&STATUS=$statusC&OFFER_WORK_HR_NAME=$sendworkid';
+        '${MyConstant.domain}/gtw/api/hn_dev_cancel.php?isAdd=true&ID=$id&STATUS=$statusC&OFFER_WORK_HR_NAME=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {

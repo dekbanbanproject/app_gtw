@@ -43,15 +43,15 @@ class _DevbookHnState extends State<DevbookHn> {
     });
 
     String apireaData =
-        '${MyConstant.domain}/gtw/api/bookindexhn.php?isAdd=true&personid=$personid';
-    await Dio().get(apireaData).then((value)async{
+        '${MyConstant.domain}/gtw/api/hn_bookindex.php?isAdd=true&personid=$personid';
+    await Dio().get(apireaData).then((value) async {
       if (value.toString() == "null") {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอ');
       } else {
         for (var item in json.decode(value.data)) {
           BookIndexModel model = BookIndexModel.fromMap(item);
           print('### ==>>>${model.BOOK_NAME}');
- 
+
           setState(() {
             bookIndexModels.add(model);
             searchbookIndexModels = bookIndexModels;
@@ -138,16 +138,15 @@ class _DevbookHnState extends State<DevbookHn> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   // Text(
-                    // searchbookIndexModels[index].BOOK_TYPE_NAME,
-                    // style: MyConstant().h4dark(),
+                  // searchbookIndexModels[index].BOOK_TYPE_NAME,
+                  // style: MyConstant().h4dark(),
                   // ),
                   // Text('  '),
                 ],
               ),
-               trailing:
-                  Text(
-                    searchbookIndexModels[index].BOOK_DATE,
-                    style: MyConstant().h4dark(),                               
+              trailing: Text(
+                searchbookIndexModels[index].BOOK_DATE,
+                style: MyConstant().h4dark(),
               ),
               // trailing: IconButton(
               //   onPressed: () {},
