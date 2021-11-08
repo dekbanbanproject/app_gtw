@@ -373,7 +373,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15,bottom: 15),
+                  padding: const EdgeInsets.only(top: 15,bottom: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

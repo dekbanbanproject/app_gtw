@@ -17,16 +17,18 @@ class _DevbookDetailHnState extends State<DevbookDetailHn> {
   @override
   void initState() {
     super.initState();
-    bookIndexModels = widget.bookIndexModels;  ///// *******  อันเดียวกันกับข้างบนสุด  ********************////
+    bookIndexModels = widget
+        .bookIndexModels; ///// *******  อันเดียวกันกับข้างบนสุด  ********************////
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange,
         title: Text(bookIndexModels!.BOOK_NAME),
       ),
-       body: Container(
+      body: Container(
         margin: EdgeInsets.only(top: 15),
         child: SingleChildScrollView(
           child: Padding(
@@ -34,123 +36,282 @@ class _DevbookDetailHnState extends State<DevbookDetailHn> {
                 const EdgeInsets.only(left: 10, right: 10, top: 1, bottom: 2),
             child: Column(
               children: [
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ปี พ.ศ.  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.BOOK_YEAR_ID,
-                        style: MyConstant().h3dark(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
                       ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
                     ),
-                    
-                  ),                
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'เลขรับ  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                       padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.BOOK_NUM_IN,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'วันที่  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.BOOK_DATE,
-                        style: MyConstant().h3dark(),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ปี พ.ศ.  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.BOOK_YEAR_ID,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'เลขที่หนังสือ  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.BOOK_NUMBER,
-                        style: MyConstant().h3dark(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'เลขรับ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.BOOK_NUM_IN,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ประเภทหนังสือ  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                       padding: const EdgeInsets.only(left: 0),
-                      child: Text(
-                        bookIndexModels!.BOOK_TYPE_NAME,
-                        style: MyConstant().h3dark(),
+                Padding(
+                 padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'วันที่  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.BOOK_DATE,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ชื่อเรื่อง  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.BOOK_NAME,
-                        style: MyConstant().h3dark(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'เลขที่หนังสือ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.BOOK_NUMBER,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'รายละเอียด  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.BOOK_DETAIL,
-                        style: MyConstant().h3dark(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ประเภทหนังสือ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 0),
+                          child: Text(
+                            bookIndexModels!.BOOK_TYPE_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สถานะ  ',
-                      style: MyConstant().h3back(),
+                Padding(
+                 padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ชื่อเรื่อง  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.BOOK_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
                     ),
-                    title: Padding(
-                       padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        bookIndexModels!.SEND_STATUS,
-                        style: MyConstant().h3dark(),
+                  ),
+                ),
+                Padding(
+                 padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'รายละเอียด  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.BOOK_DETAIL,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                 padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                     decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          width: 2.0,
+                          color: Colors.blueAccent,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'สถานะ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            bookIndexModels!.SEND_STATUS,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),

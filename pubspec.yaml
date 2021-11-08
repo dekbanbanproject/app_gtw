@@ -45,6 +45,7 @@ dependencies:
   animated_floatactionbuttons: ^0.1.0
   syncfusion_flutter_charts: ^19.3.48
   pie_chart: ^5.1.0
+  json_table: ^2.0.1
   # charts_flutter: ^0.11.0
 
 # dependency_overrides:

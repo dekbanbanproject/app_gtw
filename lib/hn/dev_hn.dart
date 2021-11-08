@@ -119,13 +119,26 @@ class _DevHNState extends State<DevHN> {
       physics: const ScrollPhysics(),
       itemCount: searchdevhnmodels.length,
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DevHN_Detail(
-                devhnmodel: searchdevhnmodels[index],
-              ),
-            )),
+        onTap: () {
+          MaterialPageRoute(
+            builder: (context) => DevHN_Detail(
+              devhnmodel: searchdevhnmodels[index],
+            ),
+          );          
+           Navigator.pushNamed(context, '/hn').then((value) => readdatadevhn());
+        },
+
+        // onTap: () => Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => DevHN_Detail(
+        //       devhnmodel: searchdevhnmodels[index],
+        //     ),
+        //   ),
+        // ),
+
+        // Navigator.push(context, route).then((value) => readdatadevhn());
+        // onTap: () => Navigator.pushNamed(context, routeName),
         child: Padding(
           padding: const EdgeInsets.only(left: 0, right: 0, top: 3, bottom: 3),
           child: Container(

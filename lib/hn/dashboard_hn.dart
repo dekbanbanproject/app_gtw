@@ -60,19 +60,69 @@ class _DashboardHNState extends State<DashboardHN> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Scaffold(
-        body: PieChart(
-          dataMap: dataMap,
-          chartRadius: MediaQuery.of(context).size.width / 1.7,
-          legendOptions: LegendOptions(
+        body: Column(
+          children: [
+            Container(
+              decoration: new BoxDecoration(boxShadow: [
+                new BoxShadow(
+                  color: Colors.grey.withOpacity(.5),
+                  blurRadius: 20.0,
+                  spreadRadius: 0.0, //extend the shadow
+                  offset: Offset(
+                    5.0, // Move to right 10  horizontally
+                    5.0, // Move to bottom 10 Vertically
+                  ),
+                ),
+              ]),
+              height: 300.0,
+              child: Card(
+                margin: const EdgeInsets.all(8.0),
+                elevation: 2.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                shadowColor: Colors.black,
+                child: PieChart(
+                  dataMap: dataMap,
+                  chartRadius: MediaQuery.of(context).size.width / 1.7,
+                  legendOptions: LegendOptions(),
+                  chartValuesOptions:
+                      ChartValuesOptions(showChartValuesInPercentage: true),
+                ),
               ),
-          chartValuesOptions:
-              ChartValuesOptions(showChartValuesInPercentage: true),
+            ),
+            Container(
+              height: 300.0,
+              decoration: new BoxDecoration(boxShadow: [
+                new BoxShadow(
+                  color: Colors.grey.withOpacity(.5),
+                  blurRadius: 20.0,
+                  spreadRadius: 0.0, //extend the shadow
+                  offset: Offset(
+                    5.0, // Move to right 10  horizontally
+                    5.0, // Move to bottom 10 Vertically
+                  ),
+                ),
+              ]),
+              child: Card(
+                margin: const EdgeInsets.all(8.0),
+                elevation: 2.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: PieChart(
+                  dataMap: dataMap,
+                  chartRadius: MediaQuery.of(context).size.width / 1.7,
+                  legendOptions: LegendOptions(),
+                  chartType: ChartType.ring,
+                  chartValuesOptions:
+                      ChartValuesOptions(showChartValuesInPercentage: true),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

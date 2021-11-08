@@ -417,7 +417,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15,bottom: 15),
+                  padding: const EdgeInsets.only(top: 15,bottom: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
