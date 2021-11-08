@@ -66,139 +66,314 @@ class _GleaveDetailState extends State<GleaveDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Colors.orange,
         title: Text(gleaveModel!.LEAVE_PERSON_FULLNAME),
       ),
       body: Container(
         margin: EdgeInsets.only(top: 15),
+        // decoration: BoxDecoration(
+        //   color: Colors.white,
+        //   borderRadius: BorderRadius.circular(10.0),
+        //   border: Border.all(
+        //     width: 2.0,
+        //     color: Colors.blueAccent,
+        //   ),
+        //   boxShadow: const [
+        //         BoxShadow(
+        //           color: Colors.black26,
+        //           offset: Offset(0, 2),
+        //           blurRadius: 6.0,
+        //         ),
+        //       ],
+        // ),
         child: SingleChildScrollView(
           child: Padding(
             padding:
-                const EdgeInsets.only(left: 10, right: 10, top: 1, bottom: 2),
+                const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
             child: Column(
               children: [
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ปีงบประมาณ  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_YEAR_ID,
-                        style: MyConstant().h3dark(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
                       ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ชื่อผู้ลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_PERSON_FULLNAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'เหตุผลการลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_BECAUSE,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สถานที่ไป  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LOCATION_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'มอบหมายงานไห้  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 0),
-                      child: Text(
-                        gleaveModel!.LEAVE_WORK_SEND,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'วันที่เริ่มลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_DATE_BEGIN,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สิ้นสุดวันลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_DATE_END,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สิ้นสุดวันลา  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        gleaveModel!.LEAVE_TYPE_NAME,
-                        style: MyConstant().h3dark(),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ปีงบประมาณ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LEAVE_YEAR_ID,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                   padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ชื่อผู้ลา  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LEAVE_PERSON_FULLNAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'เหตุผลการลา  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LEAVE_BECAUSE,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'สถานที่ไป  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LOCATION_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'มอบหมายงานไห้  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 0),
+                          child: Text(
+                            gleaveModel!.LEAVE_WORK_SEND,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'วันที่เริ่มลา  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LEAVE_DATE_BEGIN,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'สิ้นสุดวันลา  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LEAVE_DATE_END,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 5),
+                  child: Container(
+                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ประเภทการลา  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            gleaveModel!.LEAVE_TYPE_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15,bottom: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

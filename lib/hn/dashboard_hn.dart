@@ -43,82 +43,79 @@ class _DashboardHNState extends State<DashboardHN> {
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
     // _chart = getData() as List<GleaveModel>;
+    getData();
   }
 
-  // Future<Null> getData() async {
-  //   String apireaData =
-  //       '${MyConstant.domain}/gtw/api/hn_gleave_chart.php?isAdd=true';
-  //   await Dio().get(apireaData).then((value) {
-  //     for (var item in json.decode(value.data)) {
-  //       GleaveModel model = GleaveModel.fromMap(item);
-  //       print('### ==>>ประเภทการลา ==>>${model.LEAVE_TYPE_CODE}');
-  //       setState(() {
-  //         gleavemodels.add(model);
-  //       });
-  //     }
-  //   });
-  // }
+  Future<Null> getData() async {
+    String apireaData =
+        '${MyConstant.domain}/gtw/api/hn_gleave_chart.php?isAdd=true';
+    await Dio().get(apireaData).then((value) {
+      for (var item in json.decode(value.data)) {
+        GleaveModel model = GleaveModel.fromMap(item);
+        print('### ==>>ประเภทการลา ==>>${model.LEAVE_TYPE_CODE}');
+        setState(() {
+          gleavemodels.add(model);
+        });
+      }
+    });
+  }
 
-  // List<GleaveModel> getChartData() {
-  //   final List<GleaveModel> chartData = [
-  //     // GleaveModel(LEADER_PERSON_ID: ''),
-  //   ];
-  //   return chartData;
-  // }
+
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Scaffold(body: PieChart(
-        dataMap:dataMap ,chartRadius: MediaQuery.of(context).size.width / 1.7,
-      legendOptions: LegendOptions(
-        // legendPosition: LegendPosition.bottom,
-        ),
-        chartValuesOptions: ChartValuesOptions(
-          showChartValuesInPercentage:true,),
-        
-        // body: SfCartesianChart(
-          // title: ChartTitle(text: 'HHHHHHHHHHHHHHHHHH'),
-          // legend: Legend(
-          //     isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
-          // series: <CircularSeries>[
-            // RadialBarSeries<GDPData, String>(
-            // DoughnutSeries<GDPData, String>(
-            // PieSeries<GDPData, String>(
-                // dataSource: _chart,
-                // xValueMapper: (GDPData data, _) => data.continent,
-                // yValueMapper: (GDPData data, _) => data.gdp,
-                // dataLabelSettings: DataLabelSettings(isVisible: true),
-                //  enableTooltip: true),
-                // maximumValue: 40000
-                // )
-          // ],
+      child: Scaffold(
+        body: PieChart(
+          dataMap: dataMap,
+          chartRadius: MediaQuery.of(context).size.width / 1.7,
+          legendOptions: LegendOptions(
+              ),
+          chartValuesOptions:
+              ChartValuesOptions(showChartValuesInPercentage: true),
         ),
       ),
     );
-      // @override
-  // Widget build(BuildContext context) {
-  //   return Expanded(
-  //     child: Scaffold(
-  //       body: SfCartesianChart(
-  //         // title: ChartTitle(text: 'HHHHHHHHHHHHHHHHHH'),
-  //         // legend: Legend(
-  //         //     isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
-  //         series: <CircularSeries>[
-  //           // RadialBarSeries<GDPData, String>(
-  //           // DoughnutSeries<GDPData, String>(
-  //           PieSeries<GDPData, String>(
-  //               // dataSource: _chart,
-  //               // xValueMapper: (GDPData data, _) => data.continent,
-  //               // yValueMapper: (GDPData data, _) => data.gdp,
-  //               // dataLabelSettings: DataLabelSettings(isVisible: true),
-  //               //  enableTooltip: true),
-  //               // maximumValue: 40000
-  //               )
-  //         ],
-  //       ),
-  //     ),
-  //   );
+
+    //   @override
+    // Widget build(BuildContext context) {
+    //   return Expanded(
+    //     child: Scaffold(
+    //       body: PieChart(
+    //         dataMap: dataMap,
+    //         chartRadius: MediaQuery.of(context).size.width / 1.7,
+    //         legendOptions: LegendOptions(
+    //             // legendPosition: LegendPosition.bottom,
+    //             ),
+    //         chartValuesOptions:
+    //             ChartValuesOptions(showChartValuesInPercentage: true),
+    //       ),
+    //     ),
+    //   );
+
+    // @override
+    // Widget build(BuildContext context) {
+    //   return Expanded(
+    //     child: Scaffold(
+    //       body: SfCartesianChart(
+    //         // title: ChartTitle(text: 'HHHHHHHHHHHHHHHHHH'),
+    //         // legend: Legend(
+    //         //     isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
+    //         series: <CircularSeries>[
+    //           // RadialBarSeries<GDPData, String>(
+    //           // DoughnutSeries<GDPData, String>(
+    //           PieSeries<GDPData, String>(
+    //               // dataSource: _chart,
+    //               // xValueMapper: (GDPData data, _) => data.continent,
+    //               // yValueMapper: (GDPData data, _) => data.gdp,
+    //               // dataLabelSettings: DataLabelSettings(isVisible: true),
+    //               //  enableTooltip: true),
+    //               // maximumValue: 40000
+    //               )
+    //         ],
+    //       ),
+    //     ),
+    //   );
 
     // body: Column(
     // children: [

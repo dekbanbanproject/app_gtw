@@ -128,44 +128,76 @@ class _GleaveHnState extends State<GleaveHn> {
               ),
             )),
         child: Padding(
-          padding: const EdgeInsets.only(left: 0, right: 0, top: 1, bottom: 1),
-          child: Card(
-            elevation: 2,
-            child: ListTile(
-              leading: Text(
-                searchgleavemodels[index].LEAVE_PERSON_FULLNAME,
-                style: MyConstant().h4dark(),
+          padding: const EdgeInsets.only(left: 0, right: 0, top: 3, bottom: 3),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(
+                width: 2.0,
+                color: Colors.blueAccent,
               ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  // Text(
-                  // searchgleavemodels[index].LEAVE_DATE_BEGIN,
-                  // style: MyConstant().h4dark(),
-                  // ),
-                  //  Text(
-                  //   ' -',
-                  //   style: MyConstant().h4dark(),
-                  // ),
-                ],
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Card(
+              elevation: 2,
+              child: ListTile(
+                leading: Text(
+                  searchgleavemodels[index].LEAVE_PERSON_FULLNAME,
+                  style: MyConstant().h4dark(),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // Text(
+                    // searchgleavemodels[index].LEAVE_DATE_BEGIN,
+                    // style: MyConstant().h4dark(),
+                    // ),
+                    //  Text(
+                    //   ' -',
+                    //   style: MyConstant().h4dark(),
+                    // ),
+                  ],
+                ),
+                trailing: Text(
+                  searchgleavemodels[index].LEAVE_DATE_END,
+                  style: MyConstant().h4dark(),
+                ),
+                // trailing: IconButton(
+                //   onPressed: () {},
+                //   icon: Icon(
+                //     Icons.edit,
+                //     size: 24,
+                //     color: Colors.orange,
+                //   ),
+                // ),
               ),
-              trailing: Text(
-                searchgleavemodels[index].LEAVE_DATE_END,
-                style: MyConstant().h4dark(),
-              ),
-              // trailing: IconButton(
-              //   onPressed: () {},
-              //   icon: Icon(
-              //     Icons.edit,
-              //     size: 24,
-              //     color: Colors.orange,
-              //   ),
-              // ),
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+Color getCategoryColor(String category) {
+  switch (category) {
+    case 'Entertainment':
+      return Colors.red[400]!;
+    case 'Food':
+      return Colors.green[400]!;
+    case 'Personal':
+      return Colors.blue[400]!;
+    case 'Transportation':
+      return Colors.purple[400]!;
+    default:
+      return Colors.orange[400]!;
   }
 }
 

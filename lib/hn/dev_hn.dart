@@ -127,21 +127,38 @@ class _DevHNState extends State<DevHN> {
               ),
             )),
         child: Padding(
-          padding: const EdgeInsets.only(left: 0, right: 0, top: 1, bottom: 1),
-          child: Card(
-            elevation: 2,
-            child: ListTile(
-              leading: Text(
-                searchdevhnmodels[index].RECORD_HEAD_USE,
-                style: MyConstant().h4dark(),
+          padding: const EdgeInsets.only(left: 0, right: 0, top: 3, bottom: 3),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(
+                width: 2.0,
+                color: Colors.blueAccent,
               ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [],
-              ),
-              trailing: Text(
-                searchdevhnmodels[index].DATE_GO,
-                style: MyConstant().h4dark(),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Card(
+              elevation: 2,
+              child: ListTile(
+                leading: Text(
+                  searchdevhnmodels[index].RECORD_HEAD_USE,
+                  style: MyConstant().h4dark(),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [],
+                ),
+                trailing: Text(
+                  searchdevhnmodels[index].DATE_GO,
+                  style: MyConstant().h4dark(),
+                ),
               ),
             ),
           ),

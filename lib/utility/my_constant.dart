@@ -7,7 +7,7 @@ class MyConstant {
   static String appName = 'GTW-BACKOffice';
   // static String domain = 'http://27.254.191.157/';
   static String domain =
-      'https://51cf-1-46-147-220.ngrok.io';
+      'https://4618-1-46-147-220.ngrok.io';
   static String routeHome = '/home';
   static String routeAuthen = '/authen';
   static String routeUserPage = '/user';

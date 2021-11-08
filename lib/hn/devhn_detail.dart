@@ -70,7 +70,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Colors.orange,
         title: Row(
           children: [
             Text('หัวข้อ  '),
@@ -83,7 +83,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
         child: SingleChildScrollView(
           child: Padding(
             padding:
-                const EdgeInsets.only(left: 10, right: 10, top: 1, bottom: 2),
+                const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
             child: Column(
               children: [
                 // Card(
@@ -101,143 +101,323 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
                 //     ),
                 //   ),
                 // ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ระหว่างวันที่  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.DATE_GO,
-                        style: MyConstant().h3dark(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
                       ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ถึงวันที่  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.DATE_GO,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'สถานที่จัดประชุม  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.LOCATION_ORG_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ประเภทการไป  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 0),
-                      child: Text(
-                        devhnmodels!.RECORD_TYPE_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ระดับ  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.RECORD_LEVEL_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'ลักษณะ  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.RECORD_GO_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'การเบิกเงิน  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.WITHDRAW_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'พาหนะเดินทาง  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.RECORD_VEHICLE_NAME,
-                        style: MyConstant().h3dark(),
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      'มอบหมายงานไห้  ',
-                      style: MyConstant().h3back(),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(left: 2),
-                      child: Text(
-                        devhnmodels!.OFFER_WORK_HR_NAME,
-                        style: MyConstant().h3dark(),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ระหว่างวันที่  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.DATE_GO,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                   padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ถึงวันที่  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.DATE_GO,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'สถานที่จัดประชุม  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.LOCATION_ORG_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ประเภทการไป  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 0),
+                          child: Text(
+                            devhnmodels!.RECORD_TYPE_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ระดับ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.RECORD_LEVEL_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'ลักษณะ  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.RECORD_GO_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'การเบิกเงิน  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.WITHDRAW_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'พาหนะเดินทาง  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.RECORD_VEHICLE_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                   padding: const EdgeInsets.only(top: 3, bottom: 3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 2.0,
+                        color: Colors.blueAccent,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+                    child: Card(
+                      child: ListTile(
+                        leading: Text(
+                          'มอบหมายงานไห้  ',
+                          style: MyConstant().h3back(),
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            devhnmodels!.OFFER_WORK_HR_NAME,
+                            style: MyConstant().h3dark(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15,bottom: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

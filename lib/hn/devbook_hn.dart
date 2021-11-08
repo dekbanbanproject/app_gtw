@@ -126,36 +126,53 @@ class _DevbookHnState extends State<DevbookHn> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 0, right: 0, top: 1, bottom: 1),
-          child: Card(
-            elevation: 2,
-            child: ListTile(
-              leading: Text(
-                searchbookIndexModels[index].BOOK_NUMBER,
-                style: MyConstant().h4dark(),
+          padding: const EdgeInsets.only(left: 0, right: 0, top: 3, bottom: 3),
+          child: Container(
+             decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(
+                width: 2.0,
+                color: Colors.blueAccent,
               ),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  // Text(
-                  // searchbookIndexModels[index].BOOK_TYPE_NAME,
-                  // style: MyConstant().h4dark(),
-                  // ),
-                  // Text('  '),
-                ],
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(0, 2),
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
+            child: Card(
+              elevation: 2,
+              child: ListTile(
+                leading: Text(
+                  searchbookIndexModels[index].BOOK_NUMBER,
+                  style: MyConstant().h4dark(),
+                ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // Text(
+                    // searchbookIndexModels[index].BOOK_TYPE_NAME,
+                    // style: MyConstant().h4dark(),
+                    // ),
+                    // Text('  '),
+                  ],
+                ),
+                trailing: Text(
+                  searchbookIndexModels[index].BOOK_DATE,
+                  style: MyConstant().h4dark(),
+                ),
+                // trailing: IconButton(
+                //   onPressed: () {},
+                //   icon: Icon(
+                //     Icons.edit,
+                //     size: 24,
+                //     color: Colors.orange,
+                //   ),
+                // ),
               ),
-              trailing: Text(
-                searchbookIndexModels[index].BOOK_DATE,
-                style: MyConstant().h4dark(),
-              ),
-              // trailing: IconButton(
-              //   onPressed: () {},
-              //   icon: Icon(
-              //     Icons.edit,
-              //     size: 24,
-              //     color: Colors.orange,
-              //   ),
-              // ),
             ),
           ),
         ),
