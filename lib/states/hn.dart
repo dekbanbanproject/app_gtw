@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gtw/hn/dashboard_hn.dart';
+import 'package:gtw/hn/dev_hn.dart';
+import 'package:gtw/hn/devbook_hn.dart';
 import 'package:gtw/hn/gleave_hn.dart';
+import 'package:gtw/hn/supplies_hn.dart';
+import 'package:gtw/hn/wherehouse_hn.dart';
 
-import 'package:gtw/user/advertise.dart';
+import 'package:gtw/states/advertise.dart';
 import 'package:gtw/utility/my_constant.dart';
 import 'package:gtw/widgets/show_signout.dart';
 import 'package:gtw/widgets/show_title.dart';
@@ -16,7 +21,19 @@ class HnPage extends StatefulWidget {
 }
 
 class _HnPageState extends State<HnPage> {
-  Widget currentWidget = AdvertisePage();
+  final List<Widget> screentTab = [
+    const DashboardHN(),
+    const DevbookHn(),
+    const GleaveHn(),
+    const DevHN(),
+    const SuppliesHn(),
+    const WhereHouseHn(),
+  ];
+
+  int _index = 0;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  // Widget currentWidget = AdvertisePage();
+  Widget currentWidget = DashboardHN();
 
   @override
   void initState() {
@@ -26,6 +43,7 @@ class _HnPageState extends State<HnPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.orange,
         // leading: Row(
@@ -42,9 +60,7 @@ class _HnPageState extends State<HnPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            MyConstant().version
-            // Text('หัวหน้า'),
-            // Text('Ver.641015',style: MyConstant().h1whit17(),),
+            MyConstant().version           
           ],
         ),
       ),
@@ -71,16 +87,186 @@ class _HnPageState extends State<HnPage> {
           ],
         ),
       ),
-      body: currentWidget,
-       floatingActionButton: AnimatedFloatingActionButton(
-        colorEndAnimation: Colors.orange.shade300,
-        colorStartAnimation: Colors.blue,
-        animatedIconData: AnimatedIcons.menu_home,
-        fabButtons: [
-          builddashboardHN(),
-          builddevbookHn(),
-        ],
+      body: SafeArea(
+          child: Column(
+        children: [currentWidget],
+      )),
+      // body: currentWidget,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),backgroundColor: Colors.orange,
+        onPressed: () {},
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MaterialButton(
+                    minWidth: 20,
+                    onPressed: () {
+                      setState(() {
+                        currentWidget = DashboardHN();
+                        _index = 0;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.dashboard,
+                          color: _index == 0
+                              ? Colors.orange
+                              : Colors.grey,
+                        ),
+                        // Text(
+                        //   'Dashboard',
+                        //   style: TextStyle(
+                        //       color: _index == 0
+                        //           ? Colors.lightBlueAccent
+                        //           : Colors.grey),
+                        // )
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 20,
+                    onPressed: () {
+                      setState(() {
+                        currentWidget = DevbookHn();
+                        _index = 1;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.book,
+                          color: _index == 1
+                              ? Colors.orange
+                              : Colors.grey,
+                        ),
+                        // Text(
+                        //   'หนังสือราชการ',
+                        //   style: TextStyle(
+                        //       color: _index == 1
+                        //           ? Colors.lightBlueAccent
+                        //           : Colors.grey),
+                        // )
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 20,
+                    onPressed: () {
+                      setState(() {
+                        currentWidget = GleaveHn();
+                        _index = 3;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.assignment_ind_rounded,
+                          //  Icons.calendar_today,
+                          color: _index == 3
+                              ? Colors.orange
+                              : Colors.grey,
+                        ),
+                       
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [                  
+                  MaterialButton(
+                    minWidth: 20,
+                    onPressed: () {
+                      setState(() {
+                        currentWidget = DevHN();
+                        _index = 4;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.emoji_transportation_outlined,
+                          color: _index == 4
+                              ? Colors.orange
+                              : Colors.grey,
+                        ),
+                       
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 20,
+                    onPressed: () {
+                      setState(() {
+                        currentWidget = SuppliesHn();
+                        _index = 5;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.card_travel_sharp,
+                          color: _index == 5
+                              ? Colors.orange
+                              : Colors.grey,
+                        ),
+                       
+                      ],
+                    ),
+                  ),
+                   MaterialButton(
+                    minWidth: 20,
+                    onPressed: () {
+                      setState(() {
+                        currentWidget = WhereHouseHn();
+                        _index = 6;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.store,
+                          color: _index == 6
+                              ? Colors.orange
+                              : Colors.grey,
+                        ),
+                       
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+      //  floatingActionButton: AnimatedFloatingActionButton(
+      //   colorEndAnimation: Colors.orange.shade300,
+      //   colorStartAnimation: Colors.blue,
+      //   animatedIconData: AnimatedIcons.menu_home,
+      //   fabButtons: [
+      //     builddashboardHN(),
+      //     builddevbookHn(),
+      //   ],
+      // ),
     );
   }
 
@@ -91,7 +277,7 @@ class _HnPageState extends State<HnPage> {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => GleaveHn(
-          
+
           //   )),
           // );
           Navigator.pushNamedAndRemoveUntil(
@@ -116,7 +302,7 @@ class _HnPageState extends State<HnPage> {
           // Navigator.push(
           //   context,
           //   MaterialPageRoute(builder: (context) => GleaveHn(
-          
+
           //   )),
           // );
           Navigator.pushNamedAndRemoveUntil(

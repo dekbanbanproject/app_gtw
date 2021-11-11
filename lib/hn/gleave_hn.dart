@@ -210,20 +210,7 @@ class _GleaveHnState extends State<GleaveHn> {
   }
 }
 
-Color getCategoryColor(String category) {
-  switch (category) {
-    case 'Entertainment':
-      return Colors.red[400]!;
-    case 'Food':
-      return Colors.green[400]!;
-    case 'Personal':
-      return Colors.blue[400]!;
-    case 'Transportation':
-      return Colors.purple[400]!;
-    default:
-      return Colors.orange[400]!;
-  }
-}
+
 
 class Debouncer {
   final int millisecond;
@@ -240,39 +227,7 @@ class Debouncer {
   }
 }  
 
-//   Container buildSearch() {
-//     return Container(
-//       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-//       child: TextFormField(
-//         onChanged: (value) {
-//           debouncer.run(() {
-//             setState(() {
-//               searchgleavemodels = gleavemodels
-//                   .where((element) => element.LEAVE_PERSON_FULLNAME
-//                       .toLowerCase()
-//                       .contains(value.toLowerCase()))
-//                   .toList();
-//             });
-//           });
-//         },
-//         decoration: const InputDecoration(
-//           prefixIcon: Icon(Icons.search),
-//           border: OutlineInputBorder(),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 
-// class GleaveHn extends StatelessWidget {
-//   const GleaveHn({ Key? key }) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-
-//     return Text(
-//       'เห็นชอบระบบลา'
-//     );
-//   }
 
