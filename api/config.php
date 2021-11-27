@@ -5,7 +5,7 @@
     header("content-type:text/javascript;charset=utf-8");
     $server = "27.254.191.157";
     $username = "gotowin";
-    $password = "Fdm^;bog-91";
+    $password = "gotx!!;Mas!zxwera!!-2554!";
     $database = "gtw";
   
     // $conn = mysqli_connect('27.254.191.157', 'gotowin', 'Fdm^;bog-91','gtw'); 

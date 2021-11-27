@@ -21,6 +21,9 @@ class HnPage extends StatefulWidget {
 }
 
 class _HnPageState extends State<HnPage> {
+  final ChartScroller chartScroller = ChartScroller();
+  List<Widget> itemData = [];
+
   final List<Widget> screentTab = [
     const DashboardHN(),
     const DevbookHn(),
@@ -42,231 +45,232 @@ class _HnPageState extends State<HnPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.orange,
-        // leading: Row(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.only(left: 3),
-        //       child: Text(
-        //         'หัวหน้า',
-        //         style: MyConstant().h1whit17(),
-        //       ),
-        //     ),
-        //   ],
-        // ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            MyConstant().version           
-          ],
-        ),
-      ),
-      drawer: Drawer(
-        child: Stack(
-          children: [
-            ShowSignOut(),
-            Column(
-              children: [
-                UserAccountsDrawerHeader(accountName: null, accountEmail: null),
-                buildAdvertisePagemenu(),
-                buildLeavemenu(),
-                buildperDevmenu(),
-                buildAccountmenu(),
-                buildgestHousemenu(),
-                buildBookmenu(),
-                // buildMeetingroommenu(),
-                // buildCarmenu(),
-                // buildAssetmenu(),
-                // buildSuppliesmenu(),
-                // buildWhereHousemenu(),
-              ],
-            ),
-          ],
-        ),
-      ),
-      body: SafeArea(
-          child: Column(
-        children: [currentWidget],
-      )),
-      // body: currentWidget,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),backgroundColor: Colors.orange,
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 10,
-        child: Container(
-          height: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    final Size size = MediaQuery.of(context).size;
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        key: scaffoldKey,
+        drawer: Drawer(
+          child: Stack(
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              ShowSignOut(),
+              Column(
                 children: [
-                  MaterialButton(
-                    minWidth: 20,
-                    onPressed: () {
-                      setState(() {
-                        currentWidget = DashboardHN();
-                        _index = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.dashboard,
-                          color: _index == 0
-                              ? Colors.orange
-                              : Colors.grey,
-                        ),
-                        // Text(
-                        //   'Dashboard',
-                        //   style: TextStyle(
-                        //       color: _index == 0
-                        //           ? Colors.lightBlueAccent
-                        //           : Colors.grey),
-                        // )
-                      ],
-                    ),
-                  ),
-                  MaterialButton(
-                    minWidth: 20,
-                    onPressed: () {
-                      setState(() {
-                        currentWidget = DevbookHn();
-                        _index = 1;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.book,
-                          color: _index == 1
-                              ? Colors.orange
-                              : Colors.grey,
-                        ),
-                        // Text(
-                        //   'หนังสือราชการ',
-                        //   style: TextStyle(
-                        //       color: _index == 1
-                        //           ? Colors.lightBlueAccent
-                        //           : Colors.grey),
-                        // )
-                      ],
-                    ),
-                  ),
-                  MaterialButton(
-                    minWidth: 20,
-                    onPressed: () {
-                      setState(() {
-                        currentWidget = GleaveHn();
-                        _index = 3;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.assignment_ind_rounded,
-                          //  Icons.calendar_today,
-                          color: _index == 3
-                              ? Colors.orange
-                              : Colors.grey,
-                        ),
-                       
-                      ],
-                    ),
-                  ),
+                  UserAccountsDrawerHeader(
+                      accountName: null, accountEmail: null),
+                  buildAdvertisePagemenu(),
+                  buildLeavemenu(),
+                  buildperDevmenu(),
+                  buildAccountmenu(),
+                  buildgestHousemenu(),
+                  buildBookmenu(),
                 ],
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [                  
-                  MaterialButton(
-                    minWidth: 20,
-                    onPressed: () {
-                      setState(() {
-                        currentWidget = DevHN();
-                        _index = 4;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.emoji_transportation_outlined,
-                          color: _index == 4
-                              ? Colors.orange
-                              : Colors.grey,
-                        ),
-                       
-                      ],
-                    ),
-                  ),
-                  MaterialButton(
-                    minWidth: 20,
-                    onPressed: () {
-                      setState(() {
-                        currentWidget = SuppliesHn();
-                        _index = 5;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.card_travel_sharp,
-                          color: _index == 5
-                              ? Colors.orange
-                              : Colors.grey,
-                        ),
-                       
-                      ],
-                    ),
-                  ),
-                   MaterialButton(
-                    minWidth: 20,
-                    onPressed: () {
-                      setState(() {
-                        currentWidget = WhereHouseHn();
-                        _index = 6;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.store,
-                          color: _index == 6
-                              ? Colors.orange
-                              : Colors.grey,
-                        ),
-                       
-                      ],
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         ),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                onPressed: () => Scaffold.of(context).openDrawer(),
+                icon: Icon(
+                  Icons.menu_open,
+                  color: Colors.orange,
+                ),
+              );
+            },
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [MyConstant().version],
+          ),
+        ),
+
+        body: Container(
+          height: size.height,
+          child: Column(
+            children: [
+              // const SizedBox(
+              //   height: 1,
+              // ),
+              // chartScroller, /// <<<=== ย้ายตัวนี้ไปไว้หน้า Dashboard
+              currentWidget
+              // Expanded(
+              //   child: ListView.builder(
+              //     itemBuilder: (context, index) {
+              //       return currentWidget;
+              //     },
+              //   ),
+              // ),
+            ],
+          ),
+        ),
+        // body: currentWidget,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.orange,
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: Container(
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 20,
+                      onPressed: () {
+                        setState(() {
+                          currentWidget = DashboardHN();
+                          _index = 0;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.dashboard,
+                            color: _index == 0 ? Colors.orange : Colors.grey,
+                          ),
+                          // Text(
+                          //   'Dashboard',
+                          //   style: TextStyle(
+                          //       color: _index == 0
+                          //           ? Colors.lightBlueAccent
+                          //           : Colors.grey),
+                          // )
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      minWidth: 20,
+                      onPressed: () {
+                        setState(() {
+                          currentWidget = DevbookHn();
+                          _index = 1;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.book,
+                            color: _index == 1 ? Colors.orange : Colors.grey,
+                          ),
+                          // Text(
+                          //   'หนังสือราชการ',
+                          //   style: TextStyle(
+                          //       color: _index == 1
+                          //           ? Colors.lightBlueAccent
+                          //           : Colors.grey),
+                          // )
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      minWidth: 20,
+                      onPressed: () {
+                        setState(() {
+                          currentWidget = GleaveHn();
+                          _index = 3;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.assignment_ind_rounded,
+                            //  Icons.calendar_today,
+                            color: _index == 3 ? Colors.orange : Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MaterialButton(
+                      minWidth: 20,
+                      onPressed: () {
+                        setState(() {
+                          currentWidget = DevHN();
+                          _index = 4;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.emoji_transportation_outlined,
+                            color: _index == 4 ? Colors.orange : Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      minWidth: 20,
+                      onPressed: () {
+                        setState(() {
+                          currentWidget = SuppliesHn();
+                          _index = 5;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.card_travel_sharp,
+                            color: _index == 5 ? Colors.orange : Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      minWidth: 20,
+                      onPressed: () {
+                        setState(() {
+                          currentWidget = WhereHouseHn();
+                          _index = 6;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.store,
+                            color: _index == 6 ? Colors.orange : Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+        //  floatingActionButton: AnimatedFloatingActionButton(
+        //   colorEndAnimation: Colors.orange.shade300,
+        //   colorStartAnimation: Colors.blue,
+        //   animatedIconData: AnimatedIcons.menu_home,
+        //   fabButtons: [
+        //     builddashboardHN(),
+        //     builddevbookHn(),
+        //   ],
+        // ),
       ),
-      //  floatingActionButton: AnimatedFloatingActionButton(
-      //   colorEndAnimation: Colors.orange.shade300,
-      //   colorStartAnimation: Colors.blue,
-      //   animatedIconData: AnimatedIcons.menu_home,
-      //   fabButtons: [
-      //     builddashboardHN(),
-      //     builddevbookHn(),
-      //   ],
-      // ),
     );
   }
 
@@ -514,3 +518,153 @@ class _HnPageState extends State<HnPage> {
     );
   }
 }
+
+class ChartScroller extends StatelessWidget {
+  const ChartScroller();
+
+  @override
+  Widget build(BuildContext context) {
+    final double chartHeight = MediaQuery.of(context).size.height * 0.2;
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Row(
+          children: [
+            Container(
+              width: 150,
+              margin: EdgeInsets.only(right: 20),
+              height: chartHeight,
+              decoration: BoxDecoration(
+                color: Colors.orange.shade400,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(24),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Official Bฺook /\nmonth',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '20 itms',
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 150,
+              margin: EdgeInsets.only(right: 20),
+              height: chartHeight,
+              decoration: BoxDecoration(
+                color: Colors.blue.shade400,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(24),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Leave System /\nmonth',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '12 itms',
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 150,
+              margin: EdgeInsets.only(right: 20),
+              height: chartHeight,
+              decoration: BoxDecoration(
+                color: Colors.purpleAccent.shade400,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(24),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Meeting, Training /\nmonth',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '24 itms',
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 150,
+              margin: EdgeInsets.only(right: 20),
+              height: chartHeight,
+              decoration: BoxDecoration(
+                color: Colors.greenAccent.shade400,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(24),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Purchase,\n Supplies /\nmonth',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                      Text(
+                      '14 itms',
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// class chartScroller extends StatelessWidget {
+//   // const chartScroller({ Key? key }) : super(key: key);
+//   const chartScroller();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }

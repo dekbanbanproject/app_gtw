@@ -183,10 +183,10 @@ class _GleaveHnState extends State<GleaveHn> {
                 //   searchgleavemodels[index].LEAVE_DATE_END,
                 //   style: MyConstant().h4dark(),
                 // ),
-                trailing: IconButton(
-                  onPressed: () => GleaveDetail(
-                    gleaveModel: searchgleavemodels[index],
-                  ),
+                // trailing: IconButton(
+                //   onPressed: () => GleaveDetail(
+                //     gleaveModel: searchgleavemodels[index],
+                //   ),
                   // onPressed: () {
                   //   MaterialPageRoute(
                   //     builder: (context) => GleaveDetail(
@@ -195,12 +195,12 @@ class _GleaveHnState extends State<GleaveHn> {
                   //   );
                   //  Navigator.pushNamed(context, MyConstant.routeTGleaveDetailPage).then((value) => readdatagleave());
                   // },
-                  icon: Icon(
-                    Icons.edit,
-                    size: 24,
-                    color: Colors.orange,
-                  ),
-                ),
+                  // icon: Icon(
+                  //   Icons.edit,
+                  //   size: 24,
+                  //   color: Colors.orange,
+                  // ),
+                // ),
               ),
             ),
           ),

@@ -30,6 +30,9 @@ class _SuppliesHnState extends State<SuppliesHn> {
   }
 
   Future<Null> readdatasupplies() async {
+    if (suppliesModels.length != 0) {
+      searchsuppliesModels.clear();
+    } else {}
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       fullname = preferences.getString('fullname');
@@ -63,25 +66,28 @@ class _SuppliesHnState extends State<SuppliesHn> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'จัดซื้อจัดจ้าง',
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent.shade700),
+      child: suppliesModels.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'จัดซื้อจัดจ้าง',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueAccent.shade700),
+                    ),
+                  ),
+                  buildSearch(),
+                  buildListView(),
+                ],
               ),
             ),
-            buildSearch(),
-            buildListView(),
-          ],
-        ),
-      ),
     );
+    // );
   }
 
   Container buildSearch() {
@@ -101,7 +107,7 @@ class _SuppliesHnState extends State<SuppliesHn> {
         },
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.search),
-          labelText: 'ค้นหาเลชที่',
+          labelText: 'ค้นหาเลขที่',
           border: OutlineInputBorder(),
         ),
       ),
@@ -119,7 +125,7 @@ class _SuppliesHnState extends State<SuppliesHn> {
           context,
           MaterialPageRoute(
             builder: (context) =>
-                SuppliesHN(suppliesModels: searchsuppliesModels[index]),
+                SuppliesHN(suppliesModel: searchsuppliesModels[index]),
           ),
         ),
         child: Padding(
@@ -154,13 +160,12 @@ class _SuppliesHnState extends State<SuppliesHn> {
                       searchsuppliesModels[index].SAVE_HR_NAME,
                       style: MyConstant().h4dark(),
                     ),
-                    
                   ],
                 ),
                 // trailing: Text(
-                  // searchsuppliesModels[index].DATE_WANT,
-                  // searchsuppliesModels[index].SAVE_HR_NAME,
-                  // style: MyConstant().h4dark(),
+                // searchsuppliesModels[index].DATE_WANT,
+                // searchsuppliesModels[index].SAVE_HR_NAME,
+                // style: MyConstant().h4dark(),
                 // ),
               ),
             ),

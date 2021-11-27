@@ -93,6 +93,7 @@ class GleaveModel {
       LEAVE_WORK_SEND_ID: map['LEAVE_WORK_SEND_ID'] == null ? '' : map['LEAVE_WORK_SEND_ID'],
       LEAVE_WORK_SEND: map['LEAVE_WORK_SEND'] == null ? '' : map['LEAVE_WORK_SEND'],
       LEAVE_TYPE_CODE: map['LEAVE_TYPE_CODE'] == null ? '' : map['LEAVE_TYPE_CODE'],
+      // LEAVE_TYPE_CODE: map['LEAVE_TYPE_CODE'] == null ? '' : int.parse(map['LEAVE_TYPE_CODE']),
       LEAVE_TYPE_NAME: map['LEAVE_TYPE_NAME'] == null ? '' : map['LEAVE_TYPE_NAME'],
       LEAVE_STATUS_CODE: map['LEAVE_STATUS_CODE'] == null ? '' : map['LEAVE_STATUS_CODE'],
       LOCATION_NAME: map['LOCATION_NAME'] == null ? '' : map['LOCATION_NAME'],

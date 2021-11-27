@@ -84,7 +84,7 @@ class _AuthenState extends State<Authen> {
           child: const Text('HN Test'),
         ),
         TextButton(
-          onPressed: () => Navigator.pushNamed(context, '/tdb'),
+          onPressed: () => Navigator.pushNamed(context, '/tdbs'),
           child: const Text('Chart Test'),
         ),
       ],

@@ -17,23 +17,23 @@
     if(isset($_GET)){
         if ($_GET['isAdd'] == 'true') {
            
-            $id = $_GET['ID'];
-            // $yearid = $_GET['LEAVE_YEAR_ID'];
-            $statusC = $_GET['STATUS']; 
-            // $depss = $_GET['HR_DEPARTMENT_SUB_SUB_ID'];
-            $sendworkid = $_GET['OFFER_WORK_HR_NAME'];
+            $id = $_GET['WAREHOUSE_AGREE_HR_ID'];
+       
 
-            $sql = mysqli_query($conn, "SELECT gr.ID,gr.LEAVE_WORK_SEND,gt.LEAVE_TYPE_NAME,gr.LEAVE_PERSON_FULLNAME,gr.LEAVE_BECAUSE,gr.LEAVE_STATUS_CODE,gr.LEAVE_YEAR_ID,gl.LOCATION_NAME,gr.LEAVE_DATE_BEGIN,gr.LEAVE_TYPE_CODE,gr.LEAVE_DATE_END,pe.HR_DEPARTMENT_SUB_SUB_ID,gr.LEAVE_WORK_SEND_ID\n"		
-            . "FROM gleave_register gr\n"
-            . "LEFT JOIN gleave_location gl ON gl.LOCATION_ID = gr.LOCATION_ID\n"
-            . "LEFT JOIN gleave_type gt ON gt.LEAVE_TYPE_ID = gr.LEAVE_TYPE_CODE\n"
-            . "LEFT JOIN hrd_person pe ON pe.ID = gr.LEAVE_PERSON_ID\n"
-            . "WHERE gr.LEADER_PERSON_ID = $id\n"
-            // . "WHERE gr.LEAVE_STATUS_CODE = '$status'\n"
-            . "AND gr.LEAVE_STATUS_CODE = 'Pending' ORDER BY gr.ID DESC ");
+            $result = mysqli_query($conn, "SELECT w.WAREHOUSE_ID,w.WAREHOUSE_REQUEST_CODE,w.WAREHOUSE_SAVE_HR_NAME,w.WAREHOUSE_DATE_WANT,w.WAREHOUSE_SAVE_HR_ID,w.WAREHOUSE_SAVE_HR_POSITION,w.WAREHOUSE_SAVE_HR_DEP_SUB_NAME,w.WAREHOUSE_STATUS,w.WAREHOUSE_AGREE_HR_ID,w.WAREHOUSE_AGREE_HR_NAME,w.WAREHOUSE_REQUEST_BUY_COMMENT,w.WAREHOUSE_BUDGET_YEAR,w.WAREHOUSE_INVEN_ID,s.INVEN_NAME \n"	         		
+            . "FROM warehouse_request w\n"   
+            . "LEFT JOIN supplies_inven s ON s.INVEN_ID = w.WAREHOUSE_INVEN_ID\n"          
+            . "WHERE w.WAREHOUSE_AGREE_HR_ID = $id\n"
+            . "AND w.WAREHOUSE_STATUS = 'Pending' ORDER BY w.WAREHOUSE_ID DESC ");
            
 
-            $result = mysqli_query($conn, $sql) or die ("Error : $sql" .mysqli_error());
+            // $result = mysqli_query($conn, "SELECT WAREHOUSE_ID,WAREHOUSE_REQUEST_CODE,WAREHOUSE_SAVE_HR_NAME,WAREHOUSE_DATE_WANT,WAREHOUSE_SAVE_HR_ID\n"	
+            // . "WAREHOUSE_SAVE_HR_POSITION,WAREHOUSE_SAVE_HR_DEP_SUB_NAME,WAREHOUSE_STATUS\n"	
+            // . "WAREHOUSE_AGREE_HR_ID,WAREHOUSE_AGREE_HR_NAME,WAREHOUSE_REQUEST_BUY_COMMENT,WAREHOUSE_BUDGET_YEAR,WAREHOUSE_INVEN_ID\n"		
+            // . "FROM warehouse_request \n"            
+            // . "WHERE WAREHOUSE_AGREE_HR_ID = $id\n"
+            // . "AND WAREHOUSE_STATUS = 'Pending' ORDER BY WAREHOUSE_ID DESC ");
+           
 
             if ($result) {
                 while($row=mysqli_fetch_assoc($result)){
@@ -41,6 +41,8 @@
                 }
                 // header('Content-type: application/json');
                 echo json_encode($output);
+            
+
             }
             
             /////////////////////////////////////  ส่งไลน์แจ้งเตือน ////////////////////////////////////////////////////

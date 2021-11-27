@@ -12,6 +12,7 @@ class SuppliesHnModels {
   final String BUDGET_YEAR;
   final String REQUEST_BUY_COMMENT;
   final String REQUEST_ID;
+  final String REQUEST_VANDOR_NAME;
   SuppliesHnModels({
     required this.ID,
     required this.DATE_WANT,
@@ -23,7 +24,8 @@ class SuppliesHnModels {
     required this.STATUS,
     required this.BUDGET_YEAR,
     required this.REQUEST_BUY_COMMENT,
-     required this.REQUEST_ID,
+    required this.REQUEST_ID,
+    required this.REQUEST_VANDOR_NAME,
   });
 
   SuppliesHnModels copyWith({
@@ -38,6 +40,7 @@ class SuppliesHnModels {
     String? BUDGET_YEAR,
     String? REQUEST_BUY_COMMENT,
     String? REQUEST_ID,
+    String? REQUEST_VANDOR_NAME,
   }) {
     return SuppliesHnModels(
       ID: ID ?? this.ID,
@@ -50,7 +53,8 @@ class SuppliesHnModels {
       STATUS: STATUS ?? this.STATUS,
       BUDGET_YEAR: BUDGET_YEAR ?? this.BUDGET_YEAR,
       REQUEST_BUY_COMMENT: REQUEST_BUY_COMMENT ?? this.REQUEST_BUY_COMMENT,
-       REQUEST_ID: REQUEST_ID ?? this.REQUEST_ID,
+      REQUEST_ID: REQUEST_ID ?? this.REQUEST_ID,
+      REQUEST_VANDOR_NAME: REQUEST_VANDOR_NAME ?? this.REQUEST_VANDOR_NAME,
     );
   }
 
@@ -67,6 +71,7 @@ class SuppliesHnModels {
       'BUDGET_YEAR': BUDGET_YEAR,
       'REQUEST_BUY_COMMENT': REQUEST_BUY_COMMENT,
       'REQUEST_ID': REQUEST_ID,
+      'REQUEST_VANDOR_NAME': REQUEST_VANDOR_NAME,
     };
   }
 
@@ -86,8 +91,8 @@ class SuppliesHnModels {
       BUDGET_YEAR: map['BUDGET_YEAR'] == null ? '' : map['BUDGET_YEAR'],
       REQUEST_BUY_COMMENT:
           map['REQUEST_BUY_COMMENT'] == null ? '' : map['REQUEST_BUY_COMMENT'],
-           REQUEST_ID:
-          map['REQUEST_ID'] == null ? '' : map['REQUEST_ID'],
+      REQUEST_ID: map['REQUEST_ID'] == null ? '' : map['REQUEST_ID'],
+      REQUEST_VANDOR_NAME: map['REQUEST_VANDOR_NAME'] == null ? '' : map['REQUEST_VANDOR_NAME'],
     );
   }
 
@@ -98,7 +103,7 @@ class SuppliesHnModels {
 
   @override
   String toString() {
-    return 'SuppliesHnModels(ID: $ID, DATE_WANT: $DATE_WANT, DEP_SUB_SUB_PHONE: $DEP_SUB_SUB_PHONE, SAVE_HR_NAME: $SAVE_HR_NAME, SAVE_HR_DEP_SUB_NAME: $SAVE_HR_DEP_SUB_NAME, REQUEST_FOR: $REQUEST_FOR, BUDGET_SUM: $BUDGET_SUM, STATUS: $STATUS, BUDGET_YEAR: $BUDGET_YEAR, REQUEST_BUY_COMMENT: $REQUEST_BUY_COMMENT,REQUEST_ID:$REQUEST_ID)';
+    return 'SuppliesHnModels(ID: $ID, DATE_WANT: $DATE_WANT, DEP_SUB_SUB_PHONE: $DEP_SUB_SUB_PHONE, SAVE_HR_NAME: $SAVE_HR_NAME, SAVE_HR_DEP_SUB_NAME: $SAVE_HR_DEP_SUB_NAME, REQUEST_FOR: $REQUEST_FOR, BUDGET_SUM: $BUDGET_SUM, STATUS: $STATUS, BUDGET_YEAR: $BUDGET_YEAR, REQUEST_BUY_COMMENT: $REQUEST_BUY_COMMENT,REQUEST_ID:$REQUEST_ID,REQUEST_VANDOR_NAME:$REQUEST_VANDOR_NAME)';
   }
 
   @override
@@ -115,7 +120,8 @@ class SuppliesHnModels {
         other.BUDGET_SUM == BUDGET_SUM &&
         other.STATUS == STATUS &&
         other.BUDGET_YEAR == BUDGET_YEAR &&
-         other.REQUEST_ID == REQUEST_ID &&
+        other.REQUEST_ID == REQUEST_ID &&
+        other.REQUEST_VANDOR_NAME == REQUEST_VANDOR_NAME &&
         other.REQUEST_BUY_COMMENT == REQUEST_BUY_COMMENT;
   }
 
@@ -131,6 +137,7 @@ class SuppliesHnModels {
         STATUS.hashCode ^
         BUDGET_YEAR.hashCode ^
         REQUEST_ID.hashCode ^
+        REQUEST_VANDOR_NAME.hashCode ^
         REQUEST_BUY_COMMENT.hashCode;
   }
 }

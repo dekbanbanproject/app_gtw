@@ -23,7 +23,7 @@ if(isset($_GET)){
 		. "LEFT JOIN supplies_request_status ss ON ss.STATUS_CODE = sr.STATUS\n"   
 		. "WHERE sr.AGREE_HR_ID = $id\n"
 		// . "WHERE gr.LEAVE_STATUS_CODE = '$status'\n"
-		. "AND sr.STATUS = 'Verify' ORDER BY sr.ID DESC ");    	
+		. "AND sr.STATUS = 'Pending' ORDER BY sr.ID DESC ");    	
 		// . "WHERE sr.STATUS = '$status'");	
 	   
 		if ($result) {

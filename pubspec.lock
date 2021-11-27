@@ -56,16 +56,16 @@ packages:
       name: charts_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.0"
+    version: "0.12.0"
   charts_flutter:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: charts_flutter
       ref: HEAD
-      resolved-ref: "30477090290b348ed3101bc13017aae465f59017"
+      resolved-ref: d6adb193ff91d2042941bad388845cbc8c5cd964
       url: "https://github.com/google/charts"
     source: git
-    version: "0.11.0"
+    version: "0.12.0"
   clock:
     dependency: transitive
     description:
@@ -94,13 +94,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  decimal:
-    dependency: transitive
-    description:
-      name: decimal
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
   dio:
     dependency: "direct main"
     description:
@@ -134,13 +127,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_charts:
-    dependency: "direct main"
-    description:
-      name: flutter_charts
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -312,13 +298,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  rational:
-    dependency: transitive
-    description:
-      name: rational
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
   shared_preferences:
     dependency: "direct main"
     description:

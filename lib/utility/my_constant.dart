@@ -6,8 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MyConstant {
   static String appName = 'GTW-BACKOffice';
   // static String domain = 'http://27.254.191.157/';
-  static String domain =
-      'https://db43-2403-6200-8830-116-7022-a7b0-6dda-ca46.ngrok.io';
+  static String domain = 'https://3dd6-1-47-12-99.ngrok.io';
   static String routeHome = '/home';
   static String routeAuthen = '/authen';
   static String routeUserPage = '/user';
@@ -17,10 +16,16 @@ class MyConstant {
   static String routeResetPage = '/reset';
   static String routeGleavePage = '/gleave';
   static String routeTdbPage = '/tdb';
+  static String routeTdbSPage = '/tdbS';
   static String routeTGleaveDetailPage = '/gleaveupdate';
 
-  var version = Text('V.641105');
+  var version = Text(
+    // 'V.641105', style: TextStyle(color: Colors.white),
+     'V.641120', style: TextStyle(color: Colors.orange,fontSize: 17,)
+    // style: MyConstant().h2back(),
+  );
 
+  
 
   _setHeaders() => {
         'Content-type': 'application/json',
@@ -152,8 +157,6 @@ class MyConstant {
   }
   // Mydialog()
 }
-
-
 
 // class CustomTextField {
 //   late final String title;

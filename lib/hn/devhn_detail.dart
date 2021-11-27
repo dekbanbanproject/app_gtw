@@ -85,22 +85,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
             padding:
                 const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
             child: Column(
-              children: [
-                // Card(
-                //   child: ListTile(
-                //     leading: Text(
-                //       'หัวข้อประชุม  ',
-                //       style: MyConstant().h3back(),
-                //     ),
-                //     title: Padding(
-                //       padding: const EdgeInsets.only(left: 5),
-                //       child: Text(
-                //         devhnmodels!.RECORD_HEAD_USE,
-                //         style: MyConstant().h3dark(),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+              children: [               
                 Padding(
                   padding: const EdgeInsets.only(top: 3, bottom: 3),
                   child: Container(
