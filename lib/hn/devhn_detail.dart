@@ -580,7 +580,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
     String id = devhnmodels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_devupdate.php?isAdd=true&ID=$id&STATUS=$status&OFFER_WORK_HR_NAME=$sendworkid';
+        '${MyConstant.domain}/api/hn_devupdate.php?isAdd=true&ID=$id&STATUS=$status&OFFER_WORK_HR_NAME=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -597,7 +597,7 @@ class _DevHN_DetailState extends State<DevHN_Detail> {
     String id = devhnmodels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_dev_cancel.php?isAdd=true&ID=$id&STATUS=$statusC&OFFER_WORK_HR_NAME=$sendworkid';
+        '${MyConstant.domain}/api/hn_dev_cancel.php?isAdd=true&ID=$id&STATUS=$statusC&OFFER_WORK_HR_NAME=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {

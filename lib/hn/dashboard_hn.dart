@@ -1,14 +1,15 @@
-import 'dart:convert';
 import 'dart:async';
+import 'dart:convert';
 
 // import 'package:charts_flutter/flutter.dart';
 // import 'package:dio/dio.dart';
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_charts/flutter_charts.dart' as charts;
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:gtw/models/chartsupreq_model.dart';
 import 'package:gtw/models/gleave_model.dart';
-import 'package:gtw/models/gleavechart_model.dart';
+// import 'package:gtw/models/gleavechart_model.dart';
 import 'package:gtw/models/suppliescharthn_model.dart';
 // import 'package:flutter_charts/flutter_charts.dart';
 // import 'package:gtw/models/gleave_model.dart';
@@ -28,11 +29,48 @@ class DashboardHN extends StatefulWidget {
 }
 
 class _DashboardHNState extends State<DashboardHN> {
-  List<SupplieschartHnModel> fromJson(String strJson) {
+  // List<SupplieschartHnModel> fromJson(String strJson) {
+  //   final data = jsonDecode(strJson);
+  //   return List<SupplieschartHnModel>.from(
+  //       data.map((i) => SupplieschartHnModel.fromMap(i)));
+  // }
+  List<Zchart> fromJson(String strJson) {
     final data = jsonDecode(strJson);
-    return List<SupplieschartHnModel>.from(
-        data.map((i) => SupplieschartHnModel.fromMap(i)));
+    return List<Zchart>.from(data.map((i) => Zchart.fromMap(i))).toList();
   }
+
+  static final List<Zchart> zchart = [];
+
+  Future<List<Zchart>> getDatazchart() async {
+    List<Zchart> zchartlist = [];
+    final response =
+        await http.get(Uri.parse("${MyConstant.domain}/api/zchart.php"));
+    if (response.statusCode == 200) {
+      // zchartlist = fromJson(response.body);
+      String zchartlist = response.body;
+      print('$zchartlist');
+    }
+    return zchartlist;
+  }
+
+  List<charts.Series<Zchart, String>> chartDatazchart = [
+      charts.Series(
+          id: 'Zchart',
+          domainFn: (Zchart s, __) => s.date,
+          measureFn: (Zchart s, __) => s.sale,
+          data: zchart)
+    ];
+  // }
+
+  // static List<charts.Series<Zchart, String>> chartDatazchart(List<Zchart> datas) {
+  //   return [
+  //     charts.Series<Zchart, String>(
+  //         id: 'Zchart',
+  //         domainFn: (Zchart s, __) => s.date,
+  //         measureFn: (Zchart s, __) => s.sale,
+  //         data: datas)
+  //   ];
+  // }
 
   List<SupplieschartHnModel> supchartmodels = [];
   List<GleaveModel> gleavemodels = [];
@@ -60,19 +98,27 @@ class _DashboardHNState extends State<DashboardHN> {
     //     "/gtw/api/supplieschart.php.php?isAdd=true&AGREE_HR_ID=$personid");
     // var res = await http.get(url);
 
-    final res = await http.get(Uri.parse(
-        "${MyConstant.domain}/gtw/api/supplieschart.php?isAdd=true"));
+    final res = await http.get(
+        Uri.parse("${MyConstant.domain}/api/supplieschart.php?isAdd=true"));
 
     if (res.statusCode == 200) {
       // var jsonResponse = jsonDecode(res.body);
       // print(jsonResponse);
       String list = res.body;
-      // list = fromJson(res.body);
+      //  list = fromJson(lists);
 
-      print('$list');
+      // print('$list');
     }
     return list;
   }
+
+  Map<String, double> datachartMap = {
+    "Flutter ": 5,
+    "Php ": 10,
+    "Phython ": 7,
+    "Go ": 6,
+    "Vue ": 3
+  };
 
   // Future<List<GleaveModel>> getDatagleave() async {
   //   List<GleaveModel> listgleave = [];
@@ -145,7 +191,7 @@ class _DashboardHNState extends State<DashboardHN> {
   }
 
   late List<GleaveModel> _chart;
-  late TooltipBehavior _tooltipBehavior;
+  // late TooltipBehavior _tooltipBehavior;
   final ChartScroller chartScroller = ChartScroller();
   final Chartdonut _chartdonut = Chartdonut();
 
@@ -159,13 +205,11 @@ class _DashboardHNState extends State<DashboardHN> {
 
   @override
   void initState() {
+    // getDatazchart().then((value) => zchart = value);
     // getDataarticle().then((value) => supchartmodels = value);
     getData().then((value) => supchartmodels = value);
-    // _chart = getChartData();
-    _tooltipBehavior = TooltipBehavior(enable: true);
+    // _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
-    // _chart = getData() as List<GleaveModel>;
-    // getDatagleave();
   }
 
   @override
@@ -206,8 +250,8 @@ class _DashboardHNState extends State<DashboardHN> {
                                 borderRadius: BorderRadius.circular(10.0)),
                             shadowColor: Colors.black,
                             child: charts.BarChart(
-                              chartData(supchartmodels),
-                              animate: true,
+                              chartDatazchart,
+                              // animate: true,
                             ),
                           ),
                         ),
@@ -456,5 +500,18 @@ class ChartScroller extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class Zchart {
+  final String date;
+  final int sale;
+  Zchart({
+    required this.date,
+    required this.sale,
+  });
+
+  factory Zchart.fromMap(Map<String, dynamic> map) {
+    return Zchart(date: map['date'], sale: int.parse(map['sale']));
   }
 }

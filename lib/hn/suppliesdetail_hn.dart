@@ -43,7 +43,7 @@ class _SuppliesHNState extends State<SuppliesHN> {
     });
 
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_supplies.php?isAdd=true&AGREE_HR_ID=$personid';
+        '${MyConstant.domain}/api/hn_supplies.php?isAdd=true&AGREE_HR_ID=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == "null") {
         // MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอ');
@@ -538,7 +538,7 @@ class _SuppliesHNState extends State<SuppliesHN> {
     String id = suppliesModels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_supplies_update.php?isAdd=true&ID=$id&STATUS=$status';
+        '${MyConstant.domain}/api/hn_supplies_update.php?isAdd=true&ID=$id&STATUS=$status';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -555,7 +555,7 @@ class _SuppliesHNState extends State<SuppliesHN> {
     String id = suppliesModels!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_supplies_cancel.php?isAdd=true&ID=$id&STATUS=$statusC';
+        '${MyConstant.domain}/api/hn_supplies_cancel.php?isAdd=true&ID=$id&STATUS=$statusC';
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
         print(value);

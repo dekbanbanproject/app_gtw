@@ -22,8 +22,9 @@ final Map<String, WidgetBuilder> map = {
   '/ad': (BuildContext context) => const AdminPage(),
   '/reset': (BuildContext context) => const ResetPage(),
   '/gleave': (BuildContext context) => const GleavePage(),
-  '/tdb': (BuildContext context) => TestDashboard(),
-   '/tdbs': (BuildContext context) => TestDashboardS(),
+  '/tdb': (BuildContext context) => const TestDashboard(),
+  '/tdbs': (BuildContext context) => const TestDashboardS(),
+  // '/gleavedetail':(BuildContext context) => GleaveDetail(),
   // '/gleaveupdate': (BuildContext context) => const GleaveDetail(),
 };
 

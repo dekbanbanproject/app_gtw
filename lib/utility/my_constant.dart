@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MyConstant {
   static String appName = 'GTW-BACKOffice';
   // static String domain = 'http://27.254.191.157/';
-  static String domain = 'https://3dd6-1-47-12-99.ngrok.io';
+  static String domain = 'https://69a3-1-46-130-202.ngrok.io/gtw';
   static String routeHome = '/home';
   static String routeAuthen = '/authen';
   static String routeUserPage = '/user';
@@ -17,15 +17,17 @@ class MyConstant {
   static String routeGleavePage = '/gleave';
   static String routeTdbPage = '/tdb';
   static String routeTdbSPage = '/tdbS';
-  static String routeTGleaveDetailPage = '/gleaveupdate';
+  // static String routeTGleaveDetailPage = '/gleavedetail';
 
   var version = Text(
-    // 'V.641105', style: TextStyle(color: Colors.white),
-     'V.641120', style: TextStyle(color: Colors.orange,fontSize: 17,)
-    // style: MyConstant().h2back(),
-  );
-
-  
+      // 'V.641105', style: TextStyle(color: Colors.white),
+      'V.641209',
+      style: TextStyle(
+        color: Colors.orange,
+        fontSize: 17,
+      )
+      // style: MyConstant().h2back(),
+      );
 
   _setHeaders() => {
         'Content-type': 'application/json',
@@ -132,6 +134,8 @@ class MyConstant {
       TextStyle(fontSize: 20, color: white, fontWeight: FontWeight.bold);
   TextStyle h1whit17() =>
       TextStyle(fontSize: 17, color: white, fontWeight: FontWeight.bold);
+
+  Text showTitle(String title) => Text(title,style: h3white(),);
 
 //Button
   ButtonStyle mybuttonStyle() => ElevatedButton.styleFrom(

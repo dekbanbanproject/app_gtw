@@ -43,7 +43,7 @@ class _DevbookHnState extends State<DevbookHn> {
     });
 
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_bookindex.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/api/hn_bookindex.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == "null") {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอ');

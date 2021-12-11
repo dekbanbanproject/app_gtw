@@ -44,7 +44,7 @@ class _DevHNState extends State<DevHN> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_dev.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/api/hn_dev.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');

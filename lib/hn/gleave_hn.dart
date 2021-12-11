@@ -45,7 +45,7 @@ class _GleaveHnState extends State<GleaveHn> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/api/hn_gleave.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
@@ -120,14 +120,29 @@ class _GleaveHnState extends State<GleaveHn> {
       physics: const ScrollPhysics(),
       itemCount: searchgleavemodels.length,
       itemBuilder: (context, index) => GestureDetector(
+
+        // onTap: () =>
+        //     Navigator.pushNamed(context, MyConstant.routeTGleaveDetailPage)
+        //         .then((value) => readdatagleave),
+
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => GleaveDetail(
-              gleaveModel: searchgleavemodels[index],
+              gleaveModeledit: searchgleavemodels[index],
             ),
           ),
         ),
+
+        // onTap: () => Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => GleaveDetail(
+        //       gleaveModel: searchgleavemodels[index],
+        //     ),
+        //   ),
+        // ),
+
         // onTap: () {
         //   MaterialPageRoute(
         //     builder: (context) => GleaveDetail(
@@ -166,13 +181,21 @@ class _GleaveHnState extends State<GleaveHn> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
+                      'วันที่     ',
+                      style: MyConstant().h4dark(),
+                    ),
+                    Text(
+                      searchgleavemodels[index].LEAVE_DATE_BEGIN,
+                      style: MyConstant().h4dark(),
+                    ),
+                    Text(
+                      '      ถึง     ',
+                      style: MyConstant().h4dark(),
+                    ),
+                    Text(
                       searchgleavemodels[index].LEAVE_DATE_END,
                       style: MyConstant().h4dark(),
                     ),
-                    // Text(
-                    // searchgleavemodels[index].LEAVE_DATE_BEGIN,
-                    // style: MyConstant().h4dark(),
-                    // ),
                     //  Text(
                     //   ' -',
                     //   style: MyConstant().h4dark(),
@@ -187,19 +210,19 @@ class _GleaveHnState extends State<GleaveHn> {
                 //   onPressed: () => GleaveDetail(
                 //     gleaveModel: searchgleavemodels[index],
                 //   ),
-                  // onPressed: () {
-                  //   MaterialPageRoute(
-                  //     builder: (context) => GleaveDetail(
-                  //       gleaveModel: searchgleavemodels[index],
-                  //     ),
-                  //   );
-                  //  Navigator.pushNamed(context, MyConstant.routeTGleaveDetailPage).then((value) => readdatagleave());
-                  // },
-                  // icon: Icon(
-                  //   Icons.edit,
-                  //   size: 24,
-                  //   color: Colors.orange,
-                  // ),
+                // onPressed: () {
+                //   MaterialPageRoute(
+                //     builder: (context) => GleaveDetail(
+                //       gleaveModel: searchgleavemodels[index],
+                //     ),
+                //   );
+                //  Navigator.pushNamed(context, MyConstant.routeTGleaveDetailPage).then((value) => readdatagleave());
+                // },
+                // icon: Icon(
+                //   Icons.edit,
+                //   size: 24,
+                //   color: Colors.orange,
+                // ),
                 // ),
               ),
             ),
@@ -209,8 +232,6 @@ class _GleaveHnState extends State<GleaveHn> {
     );
   }
 }
-
-
 
 class Debouncer {
   final int millisecond;
@@ -225,9 +246,4 @@ class Debouncer {
     }
     timer = Timer(Duration(milliseconds: millisecond), callback);
   }
-}  
-
-
-
-
-
+}

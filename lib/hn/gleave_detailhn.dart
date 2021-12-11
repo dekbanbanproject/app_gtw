@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:gtw/models/gleave_model.dart';
 import 'package:gtw/utility/my_constant.dart';
 import 'package:gtw/utility/my_dialog.dart';
+import 'package:gtw/widgets/show_title.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GleaveDetail extends StatefulWidget {
-  final GleaveModel gleaveModel;
-  const GleaveDetail({Key? key, required this.gleaveModel}) : super(key: key);
+   final GleaveModel gleaveModeledit;
+  const GleaveDetail({Key? key,required this.gleaveModeledit}) : super(key: key);
+  // final SuppliesHnModels suppliesModel;
+  // const SuppliesHN({Key? key, required this.suppliesModel}) : super(key: key);
 
   @override
   _GleaveDetailState createState() => _GleaveDetailState();
@@ -17,14 +20,20 @@ class GleaveDetail extends StatefulWidget {
 
 class _GleaveDetailState extends State<GleaveDetail> {
   GleaveModel? gleaveModel; //ตัวแปรคนละตัวกับข้างบน
+  TextEditingController nameController = TextEditingController();
+  TextEditingController yearController = TextEditingController();
+  String? fullname;
+  bool load = true;
+  bool? haveData;
+  List<GleaveModel> gleaveModelslist = [];
   String? id, yearid, status, statusC, typename, idperson, iddebss, sendworkid;
-  String? personid, positionid, depsubsubid, fullname;
+  String? personid, positionid, depsubsubid;
 
   @override
   void initState() {
     super.initState();
-    gleaveModel = widget
-        .gleaveModel; ///// *******  อันเดียวกันกับข้างบนสุด  ********************////
+      gleaveModel = widget
+        .gleaveModeledit; ///// *******  อันเดียวกันกับข้างบนสุด  ********************////
     id = gleaveModel!.ID;
     print(id);
     yearid = gleaveModel!.LEAVE_YEAR_ID;
@@ -34,30 +43,43 @@ class _GleaveDetailState extends State<GleaveDetail> {
     typename = gleaveModel!.LEAVE_TYPE_NAME;
     sendworkid = gleaveModel!.LEAVE_WORK_SEND_ID;
     print(status);
-
     readdatagleave();
   }
 
   Future<Null> readdatagleave() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      fullname = preferences.getString('fullname');
-      personid = preferences.getString('personid');
-      positionid = preferences.getString('positionid');
-      depsubsubid = preferences.getString('depsubsubid');
-      print('###personid ==>>> $personid');
-      print('###positionid ==>>> $positionid');
-      print('###depsubsubid ==>>> $depsubsubid');
-    });
+
+    String fullname = preferences.getString('fullname')!;
+    String personid = preferences.getString('personid')!;
+    String positionid = preferences.getString('positionid')!;
+    String depsubsubid = preferences.getString('depsubsubid')!;
+    print('###personid ==>>> $personid');
+    print('###positionid ==>>> $positionid');
+    print('###depsubsubid ==>>> $depsubsubid');
+
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_gleave.php?isAdd=true&personid=$personid';
+        '${MyConstant.domain}/api/hn_gleave.php?isAdd=true&personid=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
-        MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');
+        //ไม่มีข้อมูล
+        setState(() {
+          load = false;
+          haveData = false;
+        });
       } else {
+        // มีข้อมูล
         for (var item in json.decode(value.data)) {
           GleaveModel model = GleaveModel.fromMap(item);
+          // nameController.text = gleaveModel!.LEAVE_PERSON_FULLNAME;    ///// ใช้ในกรณี TexyFormFild
+          // String fullname = model.LEAVE_PERSON_FULLNAME;
           print('### ==>>>${model.LEAVE_PERSON_FULLNAME}');
+          setState(() {
+            load = false;
+            haveData = true;
+            gleaveModelslist.add(model);
+            // fullname = gleaveModel!.LEAVE_PERSON_FULLNAME;
+            // print('### ==>>>$gleaveModel');
+          });
         }
       }
     });
@@ -66,26 +88,29 @@ class _GleaveDetailState extends State<GleaveDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.orange,
-        title: Text(gleaveModel!.LEAVE_PERSON_FULLNAME),
-      ),
-      body: Container(
+      appBar: AppBar(
+          backgroundColor: Colors.orange,       
+          title: load
+              ? CircularProgressIndicator()
+              : haveData!
+                  ? Text(gleaveModel!.LEAVE_PERSON_FULLNAME)
+                  : Text('No data')
+          
+          ),
+      // body: load
+      //     ? CircularProgressIndicator()
+      //     : haveData!
+      //         ? ListView.builder(
+      //             itemCount: gleaveModels.length,
+      //             itemBuilder: (context, index) =>
+      //                 Text(gleaveModels[index].LEAVE_YEAR_ID),
+      //           )
+      //         : Text('No data'),
+     
+    // );
+     body: Container(
         margin: EdgeInsets.only(top: 15),
-        // decoration: BoxDecoration(
-        //   color: Colors.white,
-        //   borderRadius: BorderRadius.circular(10.0),
-        //   border: Border.all(
-        //     width: 2.0,
-        //     color: Colors.blueAccent,
-        //   ),
-        //   boxShadow: const [
-        //         BoxShadow(
-        //           color: Colors.black26,
-        //           offset: Offset(0, 2),
-        //           blurRadius: 6.0,
-        //         ),
-        //       ],
-        // ),
+       
         child: SingleChildScrollView(
           child: Padding(
             padding:
@@ -162,7 +187,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
                     ),
                   ),
                 ),
-                Padding(
+Padding(
                   padding: const EdgeInsets.only(top: 3, bottom: 5),
                   child: Container(
                      decoration: BoxDecoration(
@@ -413,6 +438,9 @@ class _GleaveDetailState extends State<GleaveDetail> {
                     ],
                   ),
                 ),
+
+
+
               ],
             ),
           ),
@@ -421,7 +449,311 @@ class _GleaveDetailState extends State<GleaveDetail> {
     );
   }
 
-  Future<Null> EditGleave() async {
+  Padding builYear() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'ปีงบประมาณ  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builName() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'ชื่อผู้ลา  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg2',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builBecause() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'เหตุผลการลา  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg3',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builLocation() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'สถานที่ไป  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg4',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builWorksend() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'มอบหมายงานไห้  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 0),
+              child: Text(
+                'gggggggggggg5',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builDatestart() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'วันที่เริ่มลา  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg6',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builDateend() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'สิ้นสุดวันลา  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg7',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding builType() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 3, bottom: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            width: 2.0,
+            color: Colors.blueAccent,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Card(
+          child: ListTile(
+            leading: Text(
+              'ประเภทการลา  ',
+              style: MyConstant().h3back(),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Text(
+                'gggggggggggg8',
+                style: MyConstant().h3dark(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+ Future<Null> EditGleave() async {
     showDialog(
       context: (context),
       builder: (context) => AlertDialog(
@@ -583,7 +915,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
     String id = gleaveModel!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_gleave_update.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$status&HR_DEPARTMENT_SUB_SUB_ID=$iddebss&LEAVE_WORK_SEND_ID=$sendworkid';
+        '${MyConstant.domain}/api/hn_gleave_update.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$status&HR_DEPARTMENT_SUB_SUB_ID=$iddebss&LEAVE_WORK_SEND_ID=$sendworkid';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -592,6 +924,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
         // readdatagleave();
       } else {
         Navigator.pop(context);
+        // readdatagleave();
       }
     });
   }
@@ -600,14 +933,20 @@ class _GleaveDetailState extends State<GleaveDetail> {
     String id = gleaveModel!.ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_gleave_cancel.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$statusC';
+        '${MyConstant.domain}/api/hn_gleave_cancel.php?isAdd=true&ID=$id&LEAVE_YEAR_ID=$yearid&LEAVE_STATUS_CODE=$statusC';
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
         print(value);
         Navigator.pop(context);
       } else {
         Navigator.pop(context);
+        // readdatagleave();
       }
     });
   }
+
+
+
+
+
 }

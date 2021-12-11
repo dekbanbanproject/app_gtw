@@ -439,7 +439,7 @@ class _WarehouseHNState extends State<WarehouseHN> {
     String id = warehouseModels!.WAREHOUSE_ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_warehouse_update.php?isAdd=true&WAREHOUSE_ID=$id&WAREHOUSE_STATUS=$status';
+        '${MyConstant.domain}/api/hn_warehouse_update.php?isAdd=true&WAREHOUSE_ID=$id&WAREHOUSE_STATUS=$status';
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
@@ -456,7 +456,7 @@ class _WarehouseHNState extends State<WarehouseHN> {
     String id = warehouseModels!.WAREHOUSE_ID;
     print(id);
     String url =
-        '${MyConstant.domain}/gtw/api/hn_warehouse_cancel.php?isAdd=true&WAREHOUSE_ID=$id&WAREHOUSE_STATUS=$statusC';
+        '${MyConstant.domain}/api/hn_warehouse_cancel.php?isAdd=true&WAREHOUSE_ID=$id&WAREHOUSE_STATUS=$statusC';
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
         print(value);

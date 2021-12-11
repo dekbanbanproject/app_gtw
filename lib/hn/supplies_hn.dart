@@ -45,7 +45,7 @@ class _SuppliesHnState extends State<SuppliesHn> {
     });
 
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_supplies.php?isAdd=true&AGREE_HR_ID=$personid';
+        '${MyConstant.domain}/api/hn_supplies.php?isAdd=true&AGREE_HR_ID=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == "null") {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอ');

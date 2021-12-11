@@ -44,7 +44,7 @@ class _WhereHouseHnState extends State<WhereHouseHn> {
       print('###depsubsubid ==>>> $depsubsubid');
     });
     String apireaData =
-        '${MyConstant.domain}/gtw/api/hn_warehoue.php?isAdd=true&WAREHOUSE_AGREE_HR_ID=$personid';
+        '${MyConstant.domain}/api/hn_warehoue.php?isAdd=true&WAREHOUSE_AGREE_HR_ID=$personid';
     await Dio().get(apireaData).then((value) async {
       if (value.toString() == 'null') {
         MyDialog().normalDialog(context, 'ไม่มีข้อมูล', 'ไม่มีการร้องขอการลา');

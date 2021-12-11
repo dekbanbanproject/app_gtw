@@ -26,7 +26,7 @@ class _TestDashboardSState extends State<TestDashboardS> {
     List<SupplieschartHnModel> list = [];
 
     final res = await http.get(
-        Uri.parse("${MyConstant.domain}/gtw/api/supplieschart.php?isAdd=true"));
+        Uri.parse("${MyConstant.domain}/api/supplieschart.php?isAdd=true"));
 
     if (res.statusCode == 200) {
       String? list = res.body;
