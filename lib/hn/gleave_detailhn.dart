@@ -90,12 +90,7 @@ class _GleaveDetailState extends State<GleaveDetail> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.orange,       
-          title: load
-              ? CircularProgressIndicator()
-              : haveData!
-                  ? Text(gleaveModel!.LEAVE_PERSON_FULLNAME)
-                  : Text('No data')
-          
+          title: Text(gleaveModel!.LEAVE_PERSON_FULLNAME)        
           ),
       // body: load
       //     ? CircularProgressIndicator()
@@ -139,13 +134,13 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       child: ListTile(
                         leading: Text(
                           'ปีงบประมาณ  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LEAVE_YEAR_ID,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -174,13 +169,13 @@ class _GleaveDetailState extends State<GleaveDetail> {
                       child: ListTile(
                         leading: Text(
                           'ชื่อผู้ลา  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LEAVE_PERSON_FULLNAME,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -209,13 +204,13 @@ Padding(
                       child: ListTile(
                         leading: Text(
                           'เหตุผลการลา  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LEAVE_BECAUSE,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -244,13 +239,13 @@ Padding(
                       child: ListTile(
                         leading: Text(
                           'สถานที่ไป  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LOCATION_NAME,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -279,13 +274,13 @@ Padding(
                       child: ListTile(
                         leading: Text(
                           'มอบหมายงานไห้  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 0),
                           child: Text(
                             gleaveModel!.LEAVE_WORK_SEND,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -314,13 +309,13 @@ Padding(
                       child: ListTile(
                         leading: Text(
                           'วันที่เริ่มลา  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LEAVE_DATE_BEGIN,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -349,13 +344,13 @@ Padding(
                       child: ListTile(
                         leading: Text(
                           'สิ้นสุดวันลา  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LEAVE_DATE_END,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -384,13 +379,13 @@ Padding(
                       child: ListTile(
                         leading: Text(
                           'ประเภทการลา  ',
-                          style: MyConstant().h3back(),
+                          style: MyConstant().h4back(),
                         ),
                         title: Padding(
                           padding: const EdgeInsets.only(left: 2),
                           child: Text(
                             gleaveModel!.LEAVE_TYPE_NAME,
-                            style: MyConstant().h3dark(),
+                            style: MyConstant().h5dark(),
                           ),
                         ),
                       ),
@@ -472,13 +467,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'ปีงบประมาณ  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -510,13 +505,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'ชื่อผู้ลา  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg2',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -548,13 +543,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'เหตุผลการลา  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg3',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -586,13 +581,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'สถานที่ไป  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg4',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -624,13 +619,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'มอบหมายงานไห้  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 0),
               child: Text(
                 'gggggggggggg5',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -662,13 +657,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'วันที่เริ่มลา  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg6',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -700,13 +695,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'สิ้นสุดวันลา  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg7',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -738,13 +733,13 @@ Padding(
           child: ListTile(
             leading: Text(
               'ประเภทการลา  ',
-              style: MyConstant().h3back(),
+              style: MyConstant().h4back(),
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 2),
               child: Text(
                 'gggggggggggg8',
-                style: MyConstant().h3dark(),
+                style: MyConstant().h5dark(),
               ),
             ),
           ),
@@ -922,6 +917,9 @@ Padding(
         print(value);
         Navigator.pop(context);
         // readdatagleave();
+        setState(() {
+          readdatagleave();
+        });
       } else {
         Navigator.pop(context);
         // readdatagleave();

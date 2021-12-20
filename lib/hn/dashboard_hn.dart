@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:gtw/models/chartsupreq_model.dart';
 import 'package:gtw/models/gleave_model.dart';
+import 'package:gtw/models/sale.dart';
 // import 'package:gtw/models/gleavechart_model.dart';
 import 'package:gtw/models/suppliescharthn_model.dart';
 // import 'package:flutter_charts/flutter_charts.dart';
@@ -29,6 +30,9 @@ class DashboardHN extends StatefulWidget {
 }
 
 class _DashboardHNState extends State<DashboardHN> {
+  List<Sale> _chartData = [];
+  // late List<Sale> _chartData;
+  late TooltipBehavior _tooltipBehavior;
   // List<SupplieschartHnModel> fromJson(String strJson) {
   //   final data = jsonDecode(strJson);
   //   return List<SupplieschartHnModel>.from(
@@ -193,7 +197,7 @@ class _DashboardHNState extends State<DashboardHN> {
   late List<GleaveModel> _chart;
   // late TooltipBehavior _tooltipBehavior;
   final ChartScroller chartScroller = ChartScroller();
-  final Chartdonut _chartdonut = Chartdonut();
+  // final Chartdonut _chartdonut = Chartdonut();
 
   Map<String, double> dataMap = {
     "Flutter ": 5,
@@ -209,6 +213,8 @@ class _DashboardHNState extends State<DashboardHN> {
     // getDataarticle().then((value) => supchartmodels = value);
     getData().then((value) => supchartmodels = value);
     // _tooltipBehavior = TooltipBehavior(enable: true);
+    _chartData = getchartData();
+    _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
 
@@ -216,151 +222,117 @@ class _DashboardHNState extends State<DashboardHN> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Scaffold(
-        body: Column(
-          children: [
-            chartScroller,
-            SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 20),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: new BoxDecoration(boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(.5),
-                              blurRadius: 20.0,
-                              spreadRadius: 0.0, //extend the shadow
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ]),
-                          height: 350.0,
-                          width: 350.0,
-                          child: Card(
-                            margin: const EdgeInsets.all(8.0),
-                            elevation: 2.0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            shadowColor: Colors.black,
-                            child: charts.BarChart(
-                              chartDatazchart,
-                              // animate: true,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          decoration: new BoxDecoration(boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(.5),
-                              blurRadius: 20.0,
-                              spreadRadius: 0.0, //extend the shadow
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ]),
-                          height: 350.0,
-                          width: 350.0,
-                          child: Card(
-                            margin: const EdgeInsets.all(8.0),
-                            elevation: 2.0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            shadowColor: Colors.black,
-                            child: PieChart(
-                              dataMap: dataMap,
-                              chartRadius:
-                                  MediaQuery.of(context).size.width / 1.7,
-                              legendOptions: LegendOptions(),
-                              chartValuesOptions: ChartValuesOptions(
-                                  showChartValuesInPercentage: true),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 350.0,
-                          width: 350.0,
-                          decoration: new BoxDecoration(boxShadow: [
-                            new BoxShadow(
-                              color: Colors.grey.withOpacity(.5),
-                              blurRadius: 20.0,
-                              spreadRadius: 0.0, //extend the shadow
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ]),
-                          child: Card(
-                            margin: const EdgeInsets.all(8.0),
-                            elevation: 2.0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: PieChart(
-                                dataMap: dataMap,
-                                chartRadius:
-                                    MediaQuery.of(context).size.width / 2.0,
-                                legendOptions: LegendOptions(),
-                                chartType: ChartType.ring,
-                                chartValuesOptions: ChartValuesOptions(
-                                    showChartValuesInPercentage: true),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+        body: SfCircularChart(
+          title: ChartTitle(
+              text:
+                  'Report Dashboard Header \n Header Menu'), // รายชื่อด้านบนหัว
+          legend: Legend(
+              isVisible: true,
+              overflowMode: LegendItemOverflowMode.wrap), // รายชื่อด้านล่าง
+          tooltipBehavior: _tooltipBehavior,
+          series: <CircularSeries>[
+            // DoughnutSeries<Sale, String>(     /// Doughnut
+            // PieSeries<Sale, String>(    /// Pie
+            RadialBarSeries<Sale, String>(
+              /// RadialBar
+              dataSource: _chartData,
+              xValueMapper: (Sale data, _) => data.date,
+              yValueMapper: (Sale data, _) => data.sale,
+              dataLabelSettings: DataLabelSettings(isVisible: true),
+              enableTooltip: true,
+              maximumValue: 9000,
+
+              /// กำหนดค่าที่มากที่สุดได้
+            )
           ],
         ),
       ),
     );
+    // return Expanded(
+    //   child: Scaffold(
+    //     body: Column(
+    //       children: [
+    //         chartScroller,
+    //         SingleChildScrollView(
+    //           physics: BouncingScrollPhysics(),
+    //           scrollDirection: Axis.horizontal,
+    //           child: Column(
+    //             children: [
+    //               Container(
+    //                 margin: const EdgeInsets.symmetric(
+    //                     vertical: 20, horizontal: 20),
+    //                 child: Row(
+    //                   children: [
+    //                     Container(
+    //                       decoration: new BoxDecoration(boxShadow: [
+    //                         new BoxShadow(
+    //                           color: Colors.grey.withOpacity(.5),
+    //                           blurRadius: 20.0,
+    //                           spreadRadius: 0.0, //extend the shadow
+    //                           offset: Offset(
+    //                             5.0, // Move to right 10  horizontally
+    //                             5.0, // Move to bottom 10 Vertically
+    //                           ),
+    //                         ),
+    //                       ]),
+    //                       height: 350.0,
+    //                       width: 350.0,
+    //                       child: Card(
+    //                         margin: const EdgeInsets.all(8.0),
+    //                         elevation: 2.0,
+    //                         shape: RoundedRectangleBorder(
+    //                             borderRadius: BorderRadius.circular(10.0)),
+    //                         shadowColor: Colors.black,
+    //                         child: charts.BarChart(
+    //                           chartDatazchart,
+    //                           // animate: true,
+    //                         ),
+    //                       ),
+    //                     ),
+                       
+    //                   ],
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
 
-class Chartdonut extends StatelessWidget {
-  const Chartdonut();
+// class Chartdonut extends StatelessWidget {
+//   const Chartdonut();
 
-  @override
-  Widget build(BuildContext context) {
-    final double chartHeight = MediaQuery.of(context).size.height * 0.2;
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: Row(
-          children: [
-            Container(
-              width: 150,
-              margin: EdgeInsets.only(right: 10),
-              height: chartHeight,
-              decoration: BoxDecoration(
-                color: Colors.orange.shade400,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(24),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     final double chartHeight = MediaQuery.of(context).size.height * 0.2;
+//     return SingleChildScrollView(
+//       physics: BouncingScrollPhysics(),
+//       scrollDirection: Axis.vertical,
+//       child: Container(
+//         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+//         child: Row(
+//           children: [
+//             Container(
+//               width: 150,
+//               margin: EdgeInsets.only(right: 10),
+//               height: chartHeight,
+//               decoration: BoxDecoration(
+//                 color: Colors.orange.shade400,
+//                 borderRadius: BorderRadius.all(
+//                   Radius.circular(24),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class ChartScroller extends StatelessWidget {
   const ChartScroller();
@@ -452,7 +424,7 @@ class ChartScroller extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Meeting, Training /\nmonth',
+                      'Meeting Training /\nmonth',
                       style: TextStyle(fontSize: 25, color: Colors.white),
                     ),
                     SizedBox(
@@ -482,7 +454,7 @@ class ChartScroller extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Purchase,\n Supplies /\nmonth',
+                      'Purchase\nSupplies /\nmonth',
                       style: TextStyle(fontSize: 25, color: Colors.white),
                     ),
                     SizedBox(
@@ -514,4 +486,20 @@ class Zchart {
   factory Zchart.fromMap(Map<String, dynamic> map) {
     return Zchart(date: map['date'], sale: int.parse(map['sale']));
   }
+}
+
+ List<Sale> getchartData() {
+    final List<Sale> chartData = [
+      Sale('OOOOO', 1520),
+      Sale('jkljk', 3520),
+      Sale('uuu', 2020),
+      Sale('ty', 5689),
+    ];
+    return chartData;
+  }
+
+class Sale {
+  Sale(this.date, this.sale);
+  late final String date;
+  late final double sale;
 }

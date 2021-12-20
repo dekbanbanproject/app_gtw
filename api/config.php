@@ -6,7 +6,8 @@
     $server = "27.254.191.157";
     $username = "gotowin";
     $password = "gotx!!;Mas!zxwera!!-2554!";
-    $database = "gtw";
+    // $database = "gtw";
+    $database = "gtwinfomation_demo";
   
     // $conn = mysqli_connect('27.254.191.157', 'gotowin', 'Fdm^;bog-91','gtw'); 
     $conn = mysqli_connect($server, $username, $password,$database); 

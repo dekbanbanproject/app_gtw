@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MyConstant {
   static String appName = 'GTW-BACKOffice';
   // static String domain = 'http://27.254.191.157/';
-  static String domain = 'https://69a3-1-46-130-202.ngrok.io/gtw';
+  static String domain = 'https://85db-183-88-231-30.ngrok.io/gtw';
   static String routeHome = '/home';
   static String routeAuthen = '/authen';
   static String routeUserPage = '/user';
@@ -21,7 +21,7 @@ class MyConstant {
 
   var version = Text(
       // 'V.641105', style: TextStyle(color: Colors.white),
-      'V.641209',
+      'V.641213',
       style: TextStyle(
         color: Colors.orange,
         fontSize: 17,
@@ -114,6 +114,8 @@ class MyConstant {
       TextStyle(fontSize: 17, color: dark, fontWeight: FontWeight.bold);
   TextStyle h4dark() =>
       TextStyle(fontSize: 15, color: dark, fontWeight: FontWeight.bold);
+  TextStyle h5dark() =>
+      TextStyle(fontSize: 13, color: dark, fontWeight: FontWeight.bold);
 
   TextStyle h3() =>
       TextStyle(fontSize: 14, color: primary, fontWeight: FontWeight.bold);
@@ -127,6 +129,8 @@ class MyConstant {
       TextStyle(fontSize: 20, color: back, fontWeight: FontWeight.bold);
   TextStyle h3back() =>
       TextStyle(fontSize: 17, color: back, fontWeight: FontWeight.bold);
+  TextStyle h4back() =>
+      TextStyle(fontSize: 15, color: back, fontWeight: FontWeight.bold);
 
   TextStyle h1whit24() =>
       TextStyle(fontSize: 24, color: white, fontWeight: FontWeight.bold);

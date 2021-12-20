@@ -175,26 +175,26 @@ class _GleaveHnState extends State<GleaveHn> {
               child: ListTile(
                 leading: Text(
                   searchgleavemodels[index].LEAVE_PERSON_FULLNAME,
-                  style: MyConstant().h4dark(),
+                  style: MyConstant().h5dark(),
                 ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'วันที่     ',
-                      style: MyConstant().h4dark(),
-                    ),
+                    // Text(
+                    //   'วันที่     ',
+                    //   style: MyConstant().h4dark(),
+                    // ),
                     Text(
                       searchgleavemodels[index].LEAVE_DATE_BEGIN,
-                      style: MyConstant().h4dark(),
+                      style: MyConstant().h5dark(),
                     ),
                     Text(
-                      '      ถึง     ',
-                      style: MyConstant().h4dark(),
+                      '  ถึง  ',
+                      style: MyConstant().h5dark(),
                     ),
                     Text(
                       searchgleavemodels[index].LEAVE_DATE_END,
-                      style: MyConstant().h4dark(),
+                      style: MyConstant().h5dark(),
                     ),
                     //  Text(
                     //   ' -',
