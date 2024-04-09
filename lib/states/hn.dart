@@ -13,8 +13,6 @@ import 'package:gtw/widgets/show_signout.dart';
 import 'package:gtw/widgets/show_title.dart';
 import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 
-import '../hn/dashboard_hn.dart';
-
 class HnPage extends StatefulWidget {
   const HnPage({Key? key}) : super(key: key);
 
@@ -26,7 +24,7 @@ class _HnPageState extends State<HnPage> {
   final ChartScroller chartScroller = ChartScroller();
   List<Widget> itemData = [];
 
-  final List<routeCameract> screentTab = [
+  final List<Widget> screentTab = [
     const DashboardHN(),
     const DevbookHn(),
     const GleaveHn(),
